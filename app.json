@@ -1,11 +1,8 @@
 {
   "expo": {
-    "name": "pet-store",
+    "name": "Pet Store",
     "slug": "pet-store",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-  },
-  "name": "pet-store"
+    "sdkVersion": "40.0.0"
+  }
 }
