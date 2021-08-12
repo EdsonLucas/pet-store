@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "pet-store",
+    "slug": "pet-store",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "pet-store"
+}
