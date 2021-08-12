@@ -9,9 +9,9 @@ const Auth = createStackNavigator();
 
 const AuthRoutes = () => (
   <Auth.Navigator screenOptions={{ headerShown: false }}>
-    <Auth.Screen name="welcome" component={Welcome} />
-    <Auth.Screen name="login" component={Login} />
-    <Auth.Screen name="register" component={Register} />
+    <Auth.Screen name='welcome' component={Welcome} />
+    <Auth.Screen name='login' component={Login} />
+    <Auth.Screen name='register' component={Register} />
   </Auth.Navigator>
 );
 

@@ -31,7 +31,7 @@ const Dashboard = () => (
     }}
   >
     <Tab.Screen
-      name="home"
+      name='home'
       component={Home}
       // options={{
       //   tabBarIcon: ({ color }) => <HomeIcon fill={color} />,
@@ -39,7 +39,7 @@ const Dashboard = () => (
       // }}
     />
     <Tab.Screen
-      name="signature"
+      name='signature'
       component={Signature}
       // options={{
       //   tabBarIcon: ({ color }) => <SignatureIcon fill={color} />,
@@ -47,7 +47,7 @@ const Dashboard = () => (
       // }}
     />
     <Tab.Screen
-      name="search"
+      name='search'
       component={Search}
       // options={{
       //   tabBarIcon: ({ color }) => <SearchIcon fill={color} />,
@@ -55,14 +55,14 @@ const Dashboard = () => (
       // }}
     />
     <Tab.Screen
-      name="orders"
+      name='orders'
       component={Orders}
       // options={{
       //   tabBarIcon: ({ color }) => <OrdersIcon fill={color} />,
       // }}
     />
     <Tab.Screen
-      name="profile"
+      name='profile'
       component={Profile}
       // options={{
       //   tabBarIcon: ({ color }) => <ProfileIcon fill={color} />,
@@ -72,8 +72,11 @@ const Dashboard = () => (
 );
 
 const App = () => (
-  <Stack.Navigator initialRouteName="dashboard" screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="dashboard" component={Dashboard} />
+  <Stack.Navigator
+    initialRouteName='dashboard'
+    screenOptions={{ headerShown: false }}
+  >
+    <Stack.Screen name='dashboard' component={Dashboard} />
   </Stack.Navigator>
 );
 

@@ -18,7 +18,8 @@ const baseText = styled.Text`
 
   letter-spacing: 0.4px;
   margin: ${(props) => props.marginTop || 0}px
-    ${(props) => props.marginRight || 0}px ${(props) => props.marginBottom || 0}px
+    ${(props) => props.marginRight || 0}px
+    ${(props) => props.marginBottom || 0}px
     ${(props) => props.marginLeft || 0}px;
 `;
 
