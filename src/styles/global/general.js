@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import colors from './colors';
 import metrics from './metrics';
-// import fonts from './fonts';
 
 export const Container = styled.SafeAreaView`
   flex: ${(props) => props.flex || 1};
@@ -24,25 +23,21 @@ const baseText = styled.Text`
 `;
 
 export const Title = styled(baseText)`
-  font-family: ${fonts.helveticaBold};
   font-size: 22px;
   color: ${colors.black};
 `;
 
 export const Subtitle = styled(baseText)`
-  font-family: ${fonts.helveticaBold};
   font-size: 17px;
   color: ${colors.grayRegular};
 `;
 
 export const Text = styled(baseText)`
-  font-family:${fonts.helveticaMedium};
   font-size: 13px;
   color: ${colors.grayRegular};
 `;
 
 export const ErrorText = styled(baseText)`
-  font-family:${fonts.helveticaMedium};
   font-size: 13px;
   color: ${colors.danger};
 `;
