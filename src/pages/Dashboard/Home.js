@@ -1,8 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 function Home() {
-  return <View />;
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'black',
+      }}
+    >
+      <Text>Home page</Text>
+    </View>
+  );
 }
 
 export default Home;

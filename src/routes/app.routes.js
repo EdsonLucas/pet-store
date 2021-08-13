@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { Platform } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // pages
@@ -9,64 +10,79 @@ import Search from '../pages/Dashboard/Search';
 import Orders from '../pages/Dashboard/Orders';
 import Profile from '../pages/Dashboard/Profile';
 
-// import HomeIconfrom '~/assets/icons/home.svg';
-// import SignatureIcon from '~/assets/icons/signature.svg';
-// import SearchIcon from '~/assets/icons/search.svg';
-// import OrdersIcon from '~/assets/icons/orders.svg';
-// import ProfileIcon from '~/assets/icons/profile.svg';
+// icons
+import HomeIcon from '~/assets/icons/home.svg';
+import SignatureIcon from '~/assets/icons/signature.svg';
+import SearchIcon from '~/assets/icons/search.svg';
+import OrdersIcon from '~/assets/icons/orders.svg';
+import ProfileIcon from '~/assets/icons/profile.svg';
 
 // helpers
-import { colors } from '../styles/global';
+import { colors } from '~/styles/global';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Dashboard = () => (
   <Tab.Navigator
     screenOptions={{
-      tabBarShowLabel: false,
-      tabBarActiveTintColor: colors.black,
+      tabBarActiveTintColor: colors.primary,
       tabBarInactiveTintColor: colors.grayLight,
       headerShown: false,
+      tabBarStyle: {
+        height: Platform.OS === 'ios' ? 58 : 65,
+        paddingTop: Platform.OS === 'ios' ? 15 : 10,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        shadowOpacity: 0,
+        elevation: 0,
+      },
+      tabBarIconStyle: {
+        marginBottom: Platform.OS === 'ios' ? 8 : 3,
+      },
+      tabBarLabelStyle: {
+        fontSize: 12,
+        marginBottom: Platform.OS === 'ios' ? 0 : 8,
+      },
     }}
   >
     <Tab.Screen
-      name='home'
+      name='Home'
       component={Home}
-      // options={{
-      //   tabBarIcon: ({ color }) => <HomeIcon fill={color} />,
-      //   headerShown: false,
-      // }}
+      options={{
+        tabBarIcon: ({ color }) => <HomeIcon color={color} />,
+        headerShown: false,
+      }}
     />
     <Tab.Screen
-      name='signature'
+      name='Assinatura'
       component={Signature}
-      // options={{
-      //   tabBarIcon: ({ color }) => <SignatureIcon fill={color} />,
-      //   headerShown: false,
-      // }}
+      options={{
+        tabBarIcon: ({ color }) => <SignatureIcon color={color} />,
+        headerShown: false,
+      }}
     />
     <Tab.Screen
-      name='search'
+      name='Pesquisa'
       component={Search}
-      // options={{
-      //   tabBarIcon: ({ color }) => <SearchIcon fill={color} />,
-      //   headerShown: false,
-      // }}
+      options={{
+        tabBarIcon: ({ color }) => <SearchIcon color={color} />,
+        headerShown: false,
+      }}
     />
     <Tab.Screen
-      name='orders'
+      name='Pedidos'
       component={Orders}
-      // options={{
-      //   tabBarIcon: ({ color }) => <OrdersIcon fill={color} />,
-      // }}
+      options={{
+        tabBarIcon: ({ color }) => <OrdersIcon color={color} />,
+      }}
     />
     <Tab.Screen
-      name='profile'
+      name='Perfil'
       component={Profile}
-      // options={{
-      //   tabBarIcon: ({ color }) => <ProfileIcon fill={color} />,
-      // }}
+      options={{
+        tabBarIcon: ({ color }) => <ProfileIcon color={color} />,
+      }}
     />
   </Tab.Navigator>
 );

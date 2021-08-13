@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 // import { useUserStore } from '~/store';
+
+import { Container } from '~/styles/global/general';
+
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
 
@@ -14,7 +17,7 @@ export default function Routes() {
 
   return (
     <>
-      {authenticated ? <AppRoutes /> : <AuthRoutes />}
+      <Container>{!authenticated ? <AppRoutes /> : <AuthRoutes />}</Container>
     </>
   );
-};
+}

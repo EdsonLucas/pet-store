@@ -1,11 +1,11 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Welcome from '~/pages/SignIn/Welcome';
 import Login from '~/pages/SignIn/Login';
 import Register from '~/pages/SignUp/Register';
 
-const Auth = createStackNavigator();
+const Auth = createNativeStackNavigator();
 
 const AuthRoutes = () => (
   <Auth.Navigator screenOptions={{ headerShown: false }}>

@@ -4,7 +4,7 @@ import metrics from './metrics';
 
 export const Container = styled.SafeAreaView`
   flex: ${(props) => props.flex || 1};
-  background-color: ${colors.whiteLight};
+  background-color: ${colors.white};
 `;
 
 export const Header = styled.View`
