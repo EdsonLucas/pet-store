@@ -3,6 +3,12 @@
     "name": "Pet Store",
     "slug": "pet-store",
     "version": "1.0.0",
-    "sdkVersion": "40.0.0"
+    "sdkVersion": "40.0.0",
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "svg"
+      ]
+    }
   }
 }
