@@ -1,10 +1,11 @@
 export default {
   transparent: 'transparent',
 
-  primary: '#435dac',
-  warning: '#ffb901',
-  danger: '#bc3f3f',
-  success: '#43ac5f',
+  blue: '#435dac',
+  yellow: '#ffb901',
+  red: '#bc3f3f',
+  green: '#43ac5f',
+  brown: '#411F0F',
 
   white: '#ffffff',
   whiteLight: '#f8f9fb',

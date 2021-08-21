@@ -4,6 +4,18 @@
     "slug": "pet-store",
     "version": "1.0.0",
     "sdkVersion": "40.0.0",
+    "icon": "./src/assets/icon.png",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFB901"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/icon.png",
+        "backgroundColor": "#FFB901"
+      }
+    },
     "packagerOpts": {
       "config": "metro.config.js",
       "sourceExts": [

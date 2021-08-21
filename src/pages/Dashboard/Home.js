@@ -8,7 +8,6 @@ function Home() {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'black',
       }}
     >
       <Text>Home page</Text>

@@ -15,9 +15,5 @@ export default function Routes() {
 
   const [authenticated, setAuthenticated] = useState(false);
 
-  return (
-    <>
-      <Container>{!authenticated ? <AppRoutes /> : <AuthRoutes />}</Container>
-    </>
-  );
+  return <>{authenticated ? <AppRoutes /> : <AuthRoutes />}</>;
 }

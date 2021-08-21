@@ -18,7 +18,7 @@ const heightPercentageToDP = (heightPercent) => {
 
 export default {
   basePadding: 30,
-  baseRadius: 10,
+  baseRadius: 12,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? width : height,
   widthPercentageToDP,

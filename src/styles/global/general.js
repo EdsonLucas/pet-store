@@ -1,10 +1,11 @@
 import styled from 'styled-components/native';
 import colors from './colors';
 import metrics from './metrics';
+import fonts from './fonts';
 
 export const Container = styled.SafeAreaView`
   flex: ${(props) => props.flex || 1};
-  background-color: ${colors.white};
+  background-color: ${(props) => props.color || colors.white};
 `;
 
 export const Header = styled.View`
@@ -24,21 +25,32 @@ const baseText = styled.Text`
 `;
 
 export const Title = styled(baseText)`
+  font-family: ${(props) => props.fontFamily || fonts.helveticaBold};
   font-size: 22px;
-  color: ${colors.black};
+  font-weight: 700;
+  line-height: 26.4px;
+  color: ${(props) => props.color || colors.black};
 `;
 
 export const Subtitle = styled(baseText)`
+  font-family: ${(props) => props.fontFamily || fonts.helveticaBold};
   font-size: 17px;
-  color: ${colors.grayRegular};
+  font-weight: 500;
+  line-height: 20px;
+  color: ${(props) => props.color || colors.grayRegular};
 `;
 
 export const Text = styled(baseText)`
+  font-family: ${(props) => props.fontFamily || fonts.helveticaMedium};
   font-size: 13px;
-  color: ${colors.grayRegular};
+  font-weight: 500;
+  line-height: 19.6px;
+  color: ${(props) => props.color || colors.grayRegular};
 `;
 
 export const ErrorText = styled(baseText)`
+  font-family: ${(props) => props.fontFamily || fonts.helveticaMedium};
   font-size: 13px;
-  color: ${colors.danger};
+  line-height: 19.6px;
+  color: ${(props) => props.color || colors.danger};
 `;
