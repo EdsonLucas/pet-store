@@ -1,20 +1,18 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import { colors, fonts, metrics } from '~/styles/global';
-import { Subtitle } from '~/styles/global/general';
+import { colors, metrics } from '~/styles/global';
 
 import {
   Container,
   Content,
-  LogoContainer,
   ButtonContainer,
   DogImage,
+  SubtitleText,
 } from '~/styles/signin/welcome';
 
 import Button from '~/components/Button/Button';
 import OutlineButton from '~/components/Button/OutlineButton';
-
-import PetStorelogo from '~/assets/images/logo-main.svg';
+import Logo from '~/components/Logo';
 
 const Welcome = ({ navigation }) => (
   <Container>
@@ -22,33 +20,22 @@ const Welcome = ({ navigation }) => (
       <SafeAreaView />
       <StatusBar backgroundColor={colors.yellow} />
 
-      <LogoContainer>
-        <PetStorelogo
-          width={metrics.widthPercentageToDP(50)}
-          height={metrics.heightPercentageToDP(20)}
-        />
-        <Subtitle
-          marginTop={-18}
-          color={colors.brown}
-          fontFamily={fonts.LinotteBold}
-        >
-          PET STORE
-        </Subtitle>
-      </LogoContainer>
+      <Logo width={50} height={20} fontSize={20} marginTitleTop={-15} />
 
-      <Subtitle
-        color={colors.brown}
-        textAlign='center'
-        marginLeft={55}
-        marginRight={55}
-      >
+      <SubtitleText>
         Compre na Pet Store e gaste o seu tempo com quem sempre está ao seu lado
-      </Subtitle>
+      </SubtitleText>
 
       <ButtonContainer>
         <Button onPress={() => {}}>Visitante</Button>
 
-        <OutlineButton onPress={() => {}}>Já sou cliente</OutlineButton>
+        <OutlineButton
+          onPress={() => navigation.navigate('login')}
+          borderButtonColor={colors.white}
+          textColor={colors.white}
+        >
+          Já sou cliente
+        </OutlineButton>
       </ButtonContainer>
     </Content>
 

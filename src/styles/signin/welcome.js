@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { colors, metrics } from '~/styles/global';
+import { Subtitle } from '~/styles/global/general';
 
 export const Container = styled.View`
   flex: 1;
@@ -11,11 +12,6 @@ export const Content = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-`;
-
-export const LogoContainer = styled.View`
-  align-items: center;
-  justify-content: center;
 `;
 
 export const ButtonContainer = styled.View`
@@ -32,4 +28,10 @@ export const DogImage = styled.Image.attrs({
   align-self: center;
   width: 377px;
   height: 156px;
+`;
+
+export const SubtitleText = styled(Subtitle)`
+  color: ${colors.brown};
+  text-align: center;
+  max-width: 70%;
 `;

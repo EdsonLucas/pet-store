@@ -9,7 +9,8 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Header = styled.View`
-  padding: ${(props) => props.padding || metrics.basePadding}px;
+  padding: ${(props) => props.paddingVertical || metrics.basePadding}px
+    ${(props) => props.paddingHorizontal || metrics.basePadding}px;
   background-color: ${(props) => props.backgroundColor || colors.white};
 `;
 

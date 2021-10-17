@@ -6,8 +6,8 @@ export const Container = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  border: 2px solid ${(props) => props.borderColor || colors.white};
-  padding: 13px 0px;
+  border: 2px solid ${(props) => props.borderColor || colors.blue};
+  padding: 10px 0px;
   text-decoration: none;
   border-radius: ${metrics.baseRadius}px;
   text-align: center;
@@ -15,5 +15,5 @@ export const Container = styled.TouchableOpacity`
 
 export const TitleButton = styled(Title)`
   font-size: 15px;
-  color: ${(props) => props.color || colors.white};
+  color: ${(props) => props.color || colors.blue};
 `;

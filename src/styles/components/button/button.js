@@ -7,7 +7,7 @@ export const Container = styled.TouchableOpacity`
   justify-content: center;
 
   background: ${(props) => props.backgroundColor || colors.blue};
-  padding: 16px 0px;
+  padding: 13px 0px;
   text-decoration: none;
   border-radius: ${metrics.baseRadius}px;
   text-align: center;
