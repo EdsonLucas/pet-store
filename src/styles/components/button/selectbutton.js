@@ -10,6 +10,8 @@ export const Container = styled.TouchableOpacity`
   border-color: rgba(0, 0, 0, 0.04);
 `;
 
+export const TextContainer = styled.View``;
+
 export const RightContainer = styled.View`
   flex-direction: row;
   align-items: center;

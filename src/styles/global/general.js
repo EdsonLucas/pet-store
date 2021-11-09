@@ -5,7 +5,7 @@ import fonts from './fonts';
 
 export const Container = styled.SafeAreaView`
   flex: ${(props) => props.flex || 1};
-  background-color: ${(props) => props.color || colors.white};
+  background-color: ${(props) => props.backgroundColor || colors.white};
 `;
 
 export const Header = styled.View`

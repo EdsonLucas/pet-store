@@ -5,16 +5,15 @@ import {
   HeaderContainer,
   ButtonContainer,
   BoxContainer,
-  Box,
   Content,
-  SelectBox,
-  TextContainer,
 } from '~/styles/signup/register';
 import { colors } from '~/styles/global';
 import { Container, Title, Text, Subtitle } from '~/styles/global/general';
 
 import BackButton from '~/components/Button/BackButton';
 import Button from '~/components/Button/Button';
+import Box from '~/components/Box';
+import SelectBox from '~/components/SelectBox';
 
 import DogImage from '~/assets/images/dog.svg';
 import CatImage from '~/assets/images/cat.svg';
@@ -22,6 +21,7 @@ import BirdImage from '~/assets/images/bird.svg';
 import BunnyImage from '~/assets/images/bunny.svg';
 import TurtleImage from '~/assets/images/turtle.svg';
 import FishImage from '~/assets/images/fish.svg';
+import Spacer from '~/components/Spacer';
 
 export default function ChoosePet({ prevStep, navigation }) {
   return (
@@ -38,61 +38,50 @@ export default function ChoosePet({ prevStep, navigation }) {
         </HeaderContainer>
 
         <BoxContainer>
-          <Box>
-            <DogImage />
+          <Box
+            image={<DogImage />}
+            title='Cães'
+            marginTitleTop={15}
+            boxShadow
+          />
 
-            <Subtitle color={colors.grayMedium} marginTop={15}>
-              Cães
-            </Subtitle>
-          </Box>
-
-          <Box>
-            <CatImage />
-
-            <Subtitle color={colors.grayMedium} marginTop={15}>
-              Gatos
-            </Subtitle>
-          </Box>
+          <Box
+            image={<CatImage />}
+            title='Gatos'
+            marginTitleTop={15}
+            boxShadow
+          />
         </BoxContainer>
 
         <Content>
           <Subtitle>Outras Categorias</Subtitle>
 
-          <SelectBox>
-            <BirdImage />
+          <SelectBox
+            image={<BirdImage />}
+            title='Aves'
+            subtitle='Pássaros, Galinhas, Patos, Etc.'
+          />
 
-            <TextContainer>
-              <Subtitle color={colors.grayMedium}>Aves</Subtitle>
-              <Text>Hamster, Coelhos, Ratos, Etc.</Text>
-            </TextContainer>
-          </SelectBox>
+          <SelectBox
+            image={<BunnyImage />}
+            title='Roedores'
+            subtitle='Hamster, Coelhos, Ratos, Etc.'
+          />
 
-          <SelectBox>
-            <BunnyImage />
+          <SelectBox
+            image={<TurtleImage />}
+            title='Répteis'
+            subtitle='Iguanas, Tartarugas, Cobras, Etc.'
+          />
 
-            <TextContainer>
-              <Subtitle color={colors.grayMedium}>Roedores</Subtitle>
-              <Text>Pássaros, Galinhas, Patos, Etc.</Text>
-            </TextContainer>
-          </SelectBox>
-
-          <SelectBox>
-            <TurtleImage />
-
-            <TextContainer>
-              <Subtitle color={colors.grayMedium}>Répteis</Subtitle>
-              <Text>Iguanas, Tartarugas, Cobras, Etc.</Text>
-            </TextContainer>
-          </SelectBox>
-
-          <SelectBox>
-            <FishImage />
-
-            <TextContainer>
-              <Subtitle color={colors.grayMedium}>Peixes</Subtitle>
-            </TextContainer>
-          </SelectBox>
+          <SelectBox
+            image={<FishImage />}
+            title='Peixes'
+            subtitle='Cavalo Marinho, Caragueijo, Etc. '
+          />
         </Content>
+
+        <Spacer />
       </ScrollView>
 
       <ButtonContainer>

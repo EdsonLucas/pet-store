@@ -6,9 +6,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // pages
 import Home from '../pages/Dashboard/Home';
 import Signature from '../pages/Dashboard/Signature';
-import Search from '../pages/Dashboard/Search';
+import Search from '../pages/Dashboard/Search/Search';
 import Orders from '../pages/Dashboard/Orders';
 import Profile from '../pages/Dashboard/Profile';
+import QuicklySearch from '../pages/Dashboard/Search/QuicklySearch';
+import ListSearch from '../pages/Dashboard/Search/ListSearch';
+import PreCart from '../pages/Dashboard/Cart/PreCart';
+import Cart from '../pages/Dashboard/Cart/Cart';
+import OrderPlaced from '~/pages/Dashboard/OrderPlaced';
 
 // icons
 import HomeIcon from '~/assets/icons/home.svg';
@@ -26,14 +31,15 @@ const Tab = createBottomTabNavigator();
 const Dashboard = () => (
   <Tab.Navigator
     screenOptions={{
-      tabBarActiveTintColor: colors.primary,
+      tabBarActiveTintColor: colors.blue,
       tabBarInactiveTintColor: colors.grayLight,
       headerShown: false,
       tabBarStyle: {
-        height: Platform.OS === 'ios' ? 58 : 65,
+        height: Platform.OS === 'ios' ? 90 : 65,
         paddingTop: Platform.OS === 'ios' ? 15 : 10,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+        borderLeftColor: colors.red,
         shadowOpacity: 0,
         elevation: 0,
       },
@@ -42,7 +48,7 @@ const Dashboard = () => (
       },
       tabBarLabelStyle: {
         fontSize: 12,
-        marginBottom: Platform.OS === 'ios' ? 0 : 8,
+        marginBottom: Platform.OS === 'ios' ? 4 : 8,
       },
     }}
   >
@@ -93,6 +99,11 @@ const App = () => (
     screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name='dashboard' component={Dashboard} />
+    <Stack.Screen name='quickly-search' component={QuicklySearch} />
+    <Stack.Screen name='list-search' component={ListSearch} />
+    <Stack.Screen name='pre-cart' component={PreCart} />
+    <Stack.Screen name='cart' component={Cart} />
+    <Stack.Screen name='order-placed' component={OrderPlaced} />
   </Stack.Navigator>
 );
 
