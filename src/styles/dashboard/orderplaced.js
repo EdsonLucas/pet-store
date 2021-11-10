@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
-import Swipeable from 'react-native-swipeable';
 import { colors, metrics } from '~/styles/global';
-import { Subtitle } from '~/styles/global/general';
+import { Subtitle, Text } from '~/styles/global/general';
 
 export const Content = styled.KeyboardAvoidingView`
   flex: 1;
@@ -20,97 +19,150 @@ export const InputText = styled(Subtitle)`
   font-size: 13px;
 `;
 
-export const BoxContainer = styled.ScrollView`
+export const FakeBackground = styled.View`
   margin: -30px ${metrics.basePadding}px 0;
-  padding: 0 20px;
-  background-color: ${colors.white};
+  height: 40px;
   border-top-left-radius: ${metrics.baseRadius};
   border-top-right-radius: ${metrics.baseRadius};
+  background-color: ${colors.white};
 `;
 
-export const FilterItems = styled.ScrollView`
+export const BoxContainer = styled.ScrollView`
+  margin: 0px ${metrics.basePadding}px 0;
+  padding: 0 20px;
+  background-color: ${colors.white};
+`;
+
+export const ButtonContainer = styled.View`
+  padding: 25px 0 30px;
+  border-bottom-width: 2px;
+  border-bottom-color: #c3c6db40;
+`;
+
+export const DeliveryContainer = styled.View`
+  align-items: center;
+
   margin-top: 20px;
-  padding-bottom: 35px;
-  padding-left: ${metrics.basePadding}px;
+  padding: 20px 0;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  border-top-color: #c3c6db40;
+  border-bottom-color: #c3c6db40;
 `;
 
-export const FilterButton = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
-})`
-  align-items: center;
-  justify-content: center;
-
-  width: 60px;
-  height: 55px;
-  background-color: ${(props) => props.color || colors.white};
-  margin-right: 15px;
-  border-radius: 10px;
-`;
-
-export const SwipeContainer = styled(Swipeable)``;
-
-export const BoxItem = styled.View`
+export const HeaderDelivery = styled.View`
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
-  background-color: ${colors.white};
-  padding: 10px 23px;
-  border-radius: ${metrics.baseRadius}px;
+  width: 80%;
 `;
 
-export const BackgroudImage = styled.View`
-  padding: 15px 0;
+export const HeaderTextContainer = styled.View`
+  margin-left: 13px;
 `;
 
-export const TextContainer = styled.View`
+export const HeaderTitle = styled(Subtitle)`
+  color: ${colors.black};
+`;
+
+export const HeaderText = styled(Subtitle)`
+  color: ${colors.black};
+  font-size: 15px;
+`;
+
+export const DeliveryBody = styled.View`
+  flex-direction: row;
+
+  margin-top: 20px;
+`;
+
+export const DeliveryColumn = styled.View`
   flex-direction: column;
+  align-items: flex-start;
 
-  width: 55%;
-  margin-left: 20px;
+  margin-left: ${(props) => props.marginLeft || 25}px;
 `;
 
-export const BottomContainer = styled.View`
-  background-color: ${colors.white};
-  padding: ${metrics.basePadding}px;
+export const RecipContainer = styled.View``;
+
+export const RecipTitleContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 20px;
 `;
 
-export const PlusContainer = styled.View`
+export const RecipProducts = styled.View`
+  margin-top: 30px;
+`;
+
+export const RecipProductTitle = styled(Text)`
+  border-bottom-width: 2px;
+  border-bottom-color: #c3c6db40;
+  padding-bottom: 5px;
+`;
+
+export const RecipProductItem = styled.View`
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
-  height: 80%;
-  border-left-width: 2px;
-  border-left-color: #C3C6DB30;
-  margin-left: 10px;
+  border-top-width: 2px;
+  border-top-color: #c3c6db40;
+  padding: 10px 0;
 `;
 
-export const CountItem = styled.View`
-  margin-left: 10px;
-  padding: 1px 8px;
-  background-color: #C3C6DB50;
-  border-radius: 7px;
+export const ProductLeftContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+
+  width: 70%;
 `;
 
-export const PlusButton = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.5,
-})`
-  padding: 5px 9px;
-  border: 1px;
-  border-color: #C3C6DB40;
-  border-radius: 10px;
-  margin-left: 10px;
+export const QuantityProduct = styled.View`
+  border-radius: ${metrics.baseRadius}px;
+  background-color: ${colors.gray};
+  padding: 0.5px 4px;
+  height: 22px;
+  margin-right: 10px;
 `;
 
-export const MinusButton = styled(PlusButton)``;
+export const ValueContainer = styled.View`
+  border-top-width: 2px;
+  border-top-color: #c3c6db40;
 
-export const DeleteButton = styled.TouchableOpacity`
+  padding: 20px 0 15px;
+`;
+
+export const ValueItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 5px 0;
+`;
+
+export const PaymentFormContainer = styled.View`
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  border-top-color: #c3c6db40;
+  border-bottom-color: #c3c6db40;
+  padding: 5px 0 10px;
+`;
+
+export const RightPaymentContainer = styled.View`
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+`;
 
-  width: 48px;
-  height: 95%;
-  border-radius: 8px;
-  margin-left: 30px;
-  background-color: ${colors.red};
+export const AddressContainer = styled.View`
+  max-width: 60%;
+
+  margin-top: 5px;
 `;
