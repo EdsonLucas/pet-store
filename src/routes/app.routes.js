@@ -14,6 +14,8 @@ import ListSearch from '../pages/Dashboard/Search/ListSearch';
 import PreCart from '../pages/Dashboard/Cart/PreCart';
 import Cart from '../pages/Dashboard/Cart/Cart';
 import OrderPlaced from '~/pages/Dashboard/OrderPlaced';
+import PageStore from '~/pages/Dashboard/Product/PageStore';
+import Product from '~/pages/Dashboard/Product/Product';
 
 // icons
 import HomeIcon from '~/assets/icons/home.svg';
@@ -104,6 +106,8 @@ const App = () => (
     <Stack.Screen name='pre-cart' component={PreCart} />
     <Stack.Screen name='cart' component={Cart} />
     <Stack.Screen name='order-placed' component={OrderPlaced} />
+    <Stack.Screen name='product' component={Product} />
+    <Stack.Screen name='page-store' component={PageStore} />
   </Stack.Navigator>
 );
 

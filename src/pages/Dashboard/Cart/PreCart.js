@@ -37,65 +37,78 @@ function PreCart({ navigation }) {
 
   return (
     <>
-    <Container flex="0" backgroundColor={colors.gray} />
-    <Content>
-      <BackButton onPress={() => navigation.goBack()} />
+      <Container flex='0' backgroundColor={colors.gray} />
+      <Content>
+        <BackButton onPress={() => navigation.goBack()} />
 
-      <Title style={{paddingHorizontal: metrics.basePadding}} marginBottom={20}>Carrinho</Title>
+        <Title
+          style={{ paddingHorizontal: metrics.basePadding }}
+          marginBottom={20}
+        >
+          Carrinho
+        </Title>
 
-      <BoxContainer showsVerticalScrollIndicator={false}>
-        <SwipeContainer rightButtons={rightButtons}>
-          <BoxItem>
-            <BackgroudImage color={colors.yellow}>
-              <Image
-                source={GoldenFood}
-                resizeMode='cover'
-                style={{
-                  alignSelf: 'center',
-                  width: 60,
-                  height: 100,
-                }}
-              />
-            </BackgroudImage>
+        <BoxContainer showsVerticalScrollIndicator={false}>
+          <SwipeContainer rightButtons={rightButtons}>
+            <BoxItem>
+              <BackgroudImage color={colors.yellow}>
+                <Image
+                  source={GoldenFood}
+                  resizeMode='cover'
+                  style={{
+                    alignSelf: 'center',
+                    width: 60,
+                    height: 100,
+                  }}
+                />
+              </BackgroudImage>
 
-            <TextContainer>
-              <Subtitle color={colors.black} marginTop={16}>
-                Ração Golden para Gatos adultos - Sabo…
-              </Subtitle>
+              <TextContainer>
+                <Subtitle color={colors.black} marginTop={16}>
+                  Ração Golden para Gatos adultos - Sabo…
+                </Subtitle>
 
-              <Text>Cat World • 5km</Text>
+                <Text>Cat World • 5km</Text>
 
-              <Subtitle color={colors.black} marginTop={15}>
-                R$ 49,59
-              </Subtitle>
-            </TextContainer>
+                <Subtitle color={colors.black} marginTop={15}>
+                  R$ 49,59
+                </Subtitle>
+              </TextContainer>
 
-            <PlusContainer>
-              <PlusButton onPress={() => setCountProduct(countProduct + 1)}>
-                <Text> + </Text>
-              </PlusButton>
+              <PlusContainer>
+                <PlusButton onPress={() => setCountProduct(countProduct + 1)}>
+                  <Text> + </Text>
+                </PlusButton>
 
-              <CountItem>
-              <Text color={colors.black}>{countProduct}</Text>
-              </CountItem>
+                <CountItem>
+                  <Text color={colors.black}>{countProduct}</Text>
+                </CountItem>
 
-              <MinusButton onPress={() => setCountProduct(countProduct - 1 || 1)}>
-                <Text> - </Text>
-              </MinusButton>
-            </PlusContainer>
-          </BoxItem>
-        </SwipeContainer>
+                <MinusButton
+                  onPress={() => setCountProduct(countProduct - 1 || 1)}
+                >
+                  <Text> - </Text>
+                </MinusButton>
+              </PlusContainer>
+            </BoxItem>
+          </SwipeContainer>
 
+          <Spacer height={20} />
+        </BoxContainer>
 
-        <Spacer height={20} />
-      </BoxContainer>
+        <BottomContainer>
+          <Subtitle alignSelf='center' color={colors.black} marginBottom={20}>
+            Subtotal: R$115,49
+          </Subtitle>
 
-      <BottomContainer>
-      <Subtitle alignSelf="center" color={colors.black} marginBottom={20}>Subtotal: R$115,49</Subtitle>
-
-      <Button style={{marginBottom:10}}>Comprar</Button>
-      <OutlineButton>Criar Assinatura</OutlineButton>
-      </BottomContainer>
+          <Button
+            style={{ marginBottom: 10 }}
+            onPress={() => navigation.navigate('cart')}
+          >
+            Comprar
+          </Button>
+          <OutlineButton>Criar Assinatura</OutlineButton>
+        </BottomContainer>
       </Content>
     </>
   );

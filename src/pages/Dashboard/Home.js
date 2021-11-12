@@ -147,7 +147,7 @@ function Home({ navigation }) {
         <StoreContainer>
           <TitleCards marginBottom={5}>Pet Shops</TitleCards>
 
-          <StoreItem>
+          <StoreItem onPress={() => navigation.navigate('page-store')}>
             <StoreImageContainer>
               <Image
                 source={AnimalShopLogo}

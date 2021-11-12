@@ -4,29 +4,32 @@ import {
   Content,
   BoxContainer,
   BoxItem,
-  BackgroudImage,
+  RowContainer,
   TextContainer,
+  AddressContainer,
+  LeftContainer,
   BottomContainer,
-  PlusContainer,
-  PlusButton,
-  CountItem,
-  MinusButton,
+  ValueContainer,
+  ValueItem,
+  RecipProducts,
+  RecipProductItem,
+  ProductLeftContainer,
+  QuantityProduct,
+  PaymentFormContainer,
+  RightPaymentContainer,
 } from '~/styles/dashboard/cart/cart';
 import { Container, Title, Text, Subtitle } from '~/styles/global/general';
 
-import Input from '~/components/Input/Input';
-import DogIcon from '~/assets/icons/dog.svg';
-import CatIcon from '~/assets/icons/cat.svg';
-import BirdIcon from '~/assets/icons/bird.svg';
-import HamsterIcon from '~/assets/icons/hamster.svg';
-import FishIcon from '~/assets/icons/fish.svg';
-import GoldenFood from '~/assets/images/golden.png';
+import CreditCardIcon from '~/assets/icons/credit-card.svg';
+import Location from '~/assets/icons/location.svg';
+import ArrowRight from '~/assets/icons/arrow-right.svg';
+import RecipIcon from '~/assets/icons/recip.svg';
+import CardIcon from '~/assets/icons/card.svg';
 
 import { colors, metrics } from '~/styles/global';
 
 import BackButton from '~/components/Button/BackButton';
 import Spacer from '~/components/Spacer';
-import OutlineButton from '~/components/Button/OutlineButton';
 import Button from '~/components/Button/Button';
 
 function Cart({ navigation }) {
@@ -34,63 +37,122 @@ function Cart({ navigation }) {
 
   return (
     <>
-    <Container flex="0" backgroundColor={colors.gray} />
-    <Content>
-      <BackButton onPress={() => navigation.goBack()} />
+      <Container flex='0' backgroundColor={colors.gray} />
+      <Content>
+        <BackButton onPress={() => navigation.goBack()} />
 
-      <Title style={{paddingHorizontal: metrics.basePadding}} marginBottom={20}>Carrinho</Title>
+        <Title
+          style={{ paddingHorizontal: metrics.basePadding }}
+          marginBottom={20}
+        >
+          Carrinho
+        </Title>
 
-      <BoxContainer showsVerticalScrollIndicator={false}>
-        <BoxItem>
-          <BackgroudImage color={colors.yellow}>
-            <Image
-              source={GoldenFood}
-              resizeMode='cover'
-              style={{
-                alignSelf: 'center',
-                width: 60,
-                height: 100,
-              }}
-            />
-          </BackgroudImage>
+        <BoxContainer showsVerticalScrollIndicator={false}>
+          <BoxItem>
+            <AddressContainer>
+              <LeftContainer>
+                <Location />
 
-          <TextContainer>
-            <Subtitle color={colors.black} marginTop={16}>
-              Ração Golden para Gatos adultos - Sabo…
-            </Subtitle>
+                <TextContainer>
+                  <Text>Entregar em</Text>
+                  <Text color={colors.black}>
+                    Rua João das Garças, 120 Campo Grande, Cariacica - ES
+                  </Text>
+                </TextContainer>
+              </LeftContainer>
 
-            <Text>Cat World • 5km</Text>
+              <ArrowRight />
+            </AddressContainer>
+          </BoxItem>
 
-            <Subtitle color={colors.black} marginTop={15}>
-              R$ 49,59
-            </Subtitle>
-          </TextContainer>
+          <BoxItem>
+            <RowContainer>
+              <RecipIcon />
+              <Subtitle marginLeft={15} color={colors.black}>
+                Produtos no carrinho
+              </Subtitle>
+            </RowContainer>
 
-          <PlusContainer>
-            <PlusButton onPress={() => setCountProduct(countProduct + 1)}>
-              <Text> + </Text>
-            </PlusButton>
+            <RecipProducts>
+              <RecipProductItem>
+                <ProductLeftContainer>
+                  <QuantityProduct>
+                    <Text color={colors.black}>1</Text>
+                  </QuantityProduct>
+                  <Text>Ração Golden 3kg para gatos, sabor carne</Text>
+                </ProductLeftContainer>
 
-            <CountItem>
-            <Text color={colors.black}>{countProduct}</Text>
-            </CountItem>
+                <Text color={colors.black}>R$ 49,59</Text>
+              </RecipProductItem>
 
-            <MinusButton onPress={() => setCountProduct(countProduct - 1 || 1)}>
-              <Text> - </Text>
-            </MinusButton>
-          </PlusContainer>
-        </BoxItem>
+              <RecipProductItem>
+                <ProductLeftContainer>
+                  <QuantityProduct>
+                    <Text color={colors.black}>1</Text>
+                  </QuantityProduct>
+                  <Text>Ração Golden 3kg para gatos, sabor carne</Text>
+                </ProductLeftContainer>
 
+                <Text color={colors.black}>R$ 49,59</Text>
+              </RecipProductItem>
+            </RecipProducts>
+          </BoxItem>
 
-        <Spacer height={20} />
-      </BoxContainer>
+          <BoxItem>
+            <RowContainer>
+              <CardIcon />
+              <Subtitle marginLeft={15} color={colors.black}>
+                Formas de pagamento
+              </Subtitle>
+            </RowContainer>
 
-      <BottomContainer>
-      <Subtitle alignSelf="center" color={colors.black} marginBottom={20}>Subtotal: R$115,49</Subtitle>
+            <PaymentFormContainer>
+              <Text>Pago pelo app</Text>
 
-      <Button style={{marginBottom:10}}>Comprar</Button>
-      <OutlineButton>Criar Assinatura</OutlineButton>
-      </BottomContainer>
+              <RightPaymentContainer>
+                <CreditCardIcon style={{ marginTop: 5 }} />
+                <Text marginLeft={5} marginRight={20} color={colors.black}>
+                  •••• 5190
+                </Text>
+
+                <ArrowRight />
+              </RightPaymentContainer>
+            </PaymentFormContainer>
+
+            <PaymentFormContainer>
+              <Text>Pagamento na entrega</Text>
+
+              <ArrowRight />
+            </PaymentFormContainer>
+          </BoxItem>
+
+          <Spacer height={20} />
+        </BoxContainer>
+
+        <BottomContainer>
+          <ValueContainer>
+            <ValueItem>
+              <Text>Subtotal</Text>
+
+              <Text>R$115,49</Text>
+            </ValueItem>
+
+            <ValueItem>
+              <Text>Taxa de entrega</Text>
+
+              <Text>Entrega Grátis</Text>
+            </ValueItem>
+
+            <ValueItem>
+              <Subtitle color={colors.black}>Total</Subtitle>
+
+              <Subtitle color={colors.black}>R$115,49</Subtitle>
+            </ValueItem>
+          </ValueContainer>
+
+          <Button style={{ marginBottom: 10 }}>Fechar pedido</Button>
+        </BottomContainer>
       </Content>
     </>
   );
