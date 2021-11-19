@@ -61,7 +61,9 @@ function Product({ navigation }) {
 
         <Content>
           <BoxItem marginTop={20}>
-            <Subtitle marginBottom={10}>Descrição</Subtitle>
+            <Subtitle color={colors.black} marginBottom={10}>
+              Descrição
+            </Subtitle>
 
             <Text> - Indicada para cães adultos;</Text>
             <Text> - Específica para pets de raças pequenas;</Text>
@@ -76,7 +78,7 @@ function Product({ navigation }) {
           </BoxItem>
 
           <BoxItem paddingHorizontal={0.1}>
-            <Subtitle marginLeft={23} marginBottom={10}>
+            <Subtitle color={colors.black} marginLeft={23} marginBottom={10}>
               Especificações
             </Subtitle>
 
@@ -117,7 +119,7 @@ function Product({ navigation }) {
         <ButtonContainer>
           <Button>Adicionar ao carinho</Button>
         </ButtonContainer>
-        <Spacer />
+        <Spacer height={50} />
       </BoxContainer>
     </>
   );

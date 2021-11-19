@@ -22,8 +22,8 @@ export const InputText = styled(Subtitle)`
 export const FakeBackground = styled.View`
   margin: -30px ${metrics.basePadding}px 0;
   height: 40px;
-  border-top-left-radius: ${metrics.baseRadius};
-  border-top-right-radius: ${metrics.baseRadius};
+  border-top-left-radius: ${metrics.baseRadius}px;
+  border-top-right-radius: ${metrics.baseRadius}px;
   background-color: ${colors.white};
 `;
 

@@ -6,7 +6,7 @@ import {
   UserTitle,
   CategoryContainer,
   CategoryTitle,
-} from '~/styles/dashboard/profile';
+} from '~/styles/dashboard/profile/profile';
 import { colors } from '~/styles/global';
 import { Container, Title } from '~/styles/global/general';
 
@@ -14,10 +14,10 @@ import SelecButton from '~/components/Button/SelectButton';
 import OutlineButton from '~/components/Button/OutlineButton';
 import Spacer from '~/components/Spacer';
 
-function Profile() {
+function Profile({ navigation }) {
   return (
     <Container backgroundColor={colors.gray}>
-      <Content>
+      <Content showsVerticalScrollIndicator={false}>
         <Title>Minha Conta</Title>
 
         <UserContainer>
@@ -71,7 +71,7 @@ function Profile() {
           title='Sobre o app'
           colorTitle={colors.black}
           fontTitle={15}
-          onPress={() => {}}
+          onPress={() => navigation.navigate('about')}
           hideRightText
         />
 

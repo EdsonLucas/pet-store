@@ -8,7 +8,7 @@ import Home from '../pages/Dashboard/Home';
 import Signature from '../pages/Dashboard/Signature';
 import Search from '../pages/Dashboard/Search/Search';
 import Orders from '../pages/Dashboard/Orders';
-import Profile from '../pages/Dashboard/Profile';
+import Profile from '../pages/Dashboard/Profile/Profile';
 import QuicklySearch from '../pages/Dashboard/Search/QuicklySearch';
 import ListSearch from '../pages/Dashboard/Search/ListSearch';
 import PreCart from '../pages/Dashboard/Cart/PreCart';
@@ -16,6 +16,8 @@ import Cart from '../pages/Dashboard/Cart/Cart';
 import OrderPlaced from '~/pages/Dashboard/OrderPlaced';
 import PageStore from '~/pages/Dashboard/Product/PageStore';
 import Product from '~/pages/Dashboard/Product/Product';
+import About from '~/pages/Dashboard/Profile/About';
+import RegisterCreditCard from '~/pages/Dashboard/RegisterCreditCard';
 
 // icons
 import HomeIcon from '~/assets/icons/home.svg';
@@ -108,6 +110,8 @@ const App = () => (
     <Stack.Screen name='order-placed' component={OrderPlaced} />
     <Stack.Screen name='product' component={Product} />
     <Stack.Screen name='page-store' component={PageStore} />
+    <Stack.Screen name='about' component={About} />
+    <Stack.Screen name='register-credit-card' component={RegisterCreditCard} />
   </Stack.Navigator>
 );
 

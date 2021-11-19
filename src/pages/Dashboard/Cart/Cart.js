@@ -37,7 +37,7 @@ function Cart({ navigation }) {
 
   return (
     <>
-      <Container flex='0' backgroundColor={colors.gray} />
+      <Container flex={0.01} backgroundColor={colors.gray} />
       <Content>
         <BackButton onPress={() => navigation.goBack()} />
 

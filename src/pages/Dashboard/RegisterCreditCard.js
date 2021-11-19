@@ -20,7 +20,7 @@ import StateList from '~/data/state';
 import CitiesList from '~/data/cities';
 import Spacer from '~/components/Spacer';
 
-export default function Address({ prevStep, nextStep }) {
+export default function RegisterCreditCard({ prevStep, nextStep }) {
   const [cep, setCep] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
   const [street, setStreet] = useState('');

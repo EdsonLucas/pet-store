@@ -9,6 +9,7 @@ import { Container, Title } from '~/styles/global/general';
 
 import Input from '~/components/Input/Input';
 import Box from '~/components/Box';
+import Spacer from '~/components/Spacer';
 
 import FeedingImage from '~/assets/images/feeding.png';
 import HousingImage from '~/assets/images/housing.png';
@@ -20,7 +21,7 @@ import { colors } from '~/styles/global';
 function Search({ navigation }) {
   return (
     <Container backgroundColor={colors.gray}>
-      <Content>
+      <Content showsVerticalScrollIndicator={false}>
         <SearchTitle>
           O que você está procurando, <Title color={colors.red}>Márcia?</Title>
         </SearchTitle>
@@ -118,6 +119,8 @@ function Search({ navigation }) {
             colorTitle={colors.black}
           />
         </BoxContainer>
+
+        <Spacer />
       </Content>
     </Container>
   );

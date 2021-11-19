@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { metrics, colors } from '../global';
+import { metrics, colors } from '~/styles/global';
 import { Text, Subtitle } from '~/styles/global/general';
 
 export const Content = styled.ScrollView`

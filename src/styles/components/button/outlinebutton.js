@@ -14,6 +14,7 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const TitleButton = styled(Title)`
+  text-align: center;
   font-size: 15px;
   color: ${(props) => props.color || colors.blue};
 `;

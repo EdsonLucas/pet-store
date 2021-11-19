@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { colors, metrics } from '~/styles/global';
 import { Subtitle } from '~/styles/global/general';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   background: ${colors.yellow};
 `;

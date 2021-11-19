@@ -6,6 +6,21 @@ export const Content = styled.KeyboardAvoidingView`
   padding: 0 ${(props) => props.padding || metrics.basePadding}px;
 `;
 
+export const FilterContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  align-self: flex-end;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: ${colors.white};
+  margin-top: 10px;
+  padding: 10px;
+  width: 35%;
+  border-radius: ${metrics.baseRadius}px;
+`;
+
 export const BoxContainer = styled.ScrollView`
   padding: 0 ${metrics.basePadding}px;
 `;
@@ -66,4 +81,32 @@ export const StoreDescription = styled(Text)`
 export const StoreShipping = styled(Text)`
   margin-top: 10px;
   color: ${colors.green};
+`;
+
+export const FilterModalContainer = styled.View`
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
+
+export const FilterItem = styled.View`
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const FilterIconContainer = styled.View`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+  border-width: 1.5px;
+  background-color: ${(props) => props.backgroundColor || colors.white};
+  border-color: ${(props) => props.borderColor || colors.grayRegular};
+  border-radius: 50px;
+  margin-bottom: 10px;
 `;

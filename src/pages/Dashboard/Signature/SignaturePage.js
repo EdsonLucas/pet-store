@@ -22,16 +22,13 @@ import CatFoodLogo from '~/assets/images/cat-food-logo.png';
 import ToysStoreLogo from '~/assets/images/toys-store-logo.png';
 
 import Spacer from '~/components/Spacer';
+import OutlineButton from '~/components/Button/OutlineButton';
 
-function Orders({ navigation }) {
+function SignaturePage({ navigation }) {
   return (
     <Container backgroundColor={colors.gray}>
       <Content showsVerticalScrollIndicator={false}>
-        <Title>Histórico</Title>
-
-        <DateContainer>
-          <Text>Sexta, 04 de Julho de 2021</Text>
-        </DateContainer>
+        <Title marginBottom={20}>Assinatura</Title>
 
         <HistoryBox onPress={() => navigation.navigate('order-placed')}>
           <HeaderContainer>
@@ -77,57 +74,14 @@ function Orders({ navigation }) {
           </FooterContainer>
         </HistoryBox>
 
-        <HistoryBox>
-          <HeaderContainer>
-            <LogoContainer>
-              <Image
-                source={ToysStoreLogo}
-                resizeMode='cover'
-                style={{
-                  height: 50,
-                  width: 61,
-                }}
-              />
-
-              <TextContainer>
-                <Subtitle color={colors.black}>Toys Cat</Subtitle>
-                <Subtitle style={{ fontSize: 15 }}>Aberto</Subtitle>
-              </TextContainer>
-            </LogoContainer>
-
-            <ArrowRight />
-          </HeaderContainer>
-
-          <OrderContainer>
-            <OrderStatus>
-              <ConfirmIcon />
-
-              <Text marginLeft={10}>Pedido Concluído</Text>
-            </OrderStatus>
-
-            <OrderItem paddingBottom={1}>
-              <QuantityItem>
-                <Text style={{ color: colors.black }}>1</Text>
-              </QuantityItem>
-
-              <Text marginLeft={10} style={{ maxWidth: 280 }}>
-                Brinquedo para gato - Torre de trilha de 3 níveis
-              </Text>
-            </OrderItem>
-            <OrderItem paddingTop={1}>
-              <Text>Mais 1 item</Text>
-            </OrderItem>
-          </OrderContainer>
-
-          <FooterContainer>
-            <Text style={{ color: colors.yellow }}>Detalhes</Text>
-          </FooterContainer>
-        </HistoryBox>
-
         <Spacer />
       </Content>
+
+      <OutlineButton style={{ marginBottom: 10 }}>
+        Criar nova assinatura
+      </OutlineButton>
     </Container>
   );
 }
 
-export default Orders;
+export default SignaturePage;

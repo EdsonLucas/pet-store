@@ -5,10 +5,6 @@ import {
   FilterItems,
   FilterButton,
   BoxContainer,
-  BoxItem,
-  BackgroudImage,
-  TextContainer,
-  RowTextContainer,
 } from '~/styles/dashboard/search/quicklysearch';
 import { Container, Title, Text, Subtitle } from '~/styles/global/general';
 
@@ -23,6 +19,7 @@ import GoldenFood from '~/assets/images/golden.png';
 import { colors } from '~/styles/global';
 
 import BackButton from '~/components/Button/BackButton';
+import ProductItem from '~/components/ProductItem';
 import Spacer from '~/components/Spacer';
 
 function QuicklySearch({ navigation }) {
@@ -61,38 +58,20 @@ function QuicklySearch({ navigation }) {
           <FilterButton>
             <FishIcon />
           </FilterButton>
+
+          <Spacer width={50} height={0.1} />
         </FilterItems>
       </Content>
 
       <BoxContainer showsVerticalScrollIndicator={false}>
-        <BoxItem>
-          <BackgroudImage color={colors.yellow}>
-            <Image
-              source={GoldenFood}
-              resizeMode='cover'
-              style={{
-                alignSelf: 'center',
-                width: 60,
-                height: 100,
-              }}
-            />
-          </BackgroudImage>
-
-          <TextContainer>
-            <Subtitle color={colors.black} marginTop={16}>
-              Ração Golden para Gatos adultos - Sabo…
-            </Subtitle>
-
-            <RowTextContainer>
-              <Text>Cat World • 5km</Text>
-              <Text color={colors.green}>Entrega Grátis</Text>
-            </RowTextContainer>
-
-            <Subtitle alignSelf='flex-end' color={colors.black} marginTop={25}>
-              R$ 49,59
-            </Subtitle>
-          </TextContainer>
-        </BoxItem>
+        <ProductItem
+          image={GoldenFood}
+          title='Ração Golden para Gatos adultos - Sabo…'
+          store='Cat World'
+          distance='5km'
+          priceDelivery='Entrega Grátis'
+          productPrice='R$ 49,59'
+        />
 
         <Spacer height={20} />
       </BoxContainer>

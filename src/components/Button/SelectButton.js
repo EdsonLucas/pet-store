@@ -10,7 +10,14 @@ import ArrowRight from '~/assets/icons/arrow-right.svg';
 import { colors } from '~/styles/global';
 
 const SelecButton = (props) => {
-  const { title, colorTitle, fontTitle, subtitle, hideRightText } = props;
+  const {
+    title,
+    colorTitle,
+    fontTitle,
+    subtitle,
+    hideRightText,
+    rightText = 'Selecionar',
+  } = props;
 
   return (
     <Container {...props}>
@@ -22,7 +29,7 @@ const SelecButton = (props) => {
       </TextContainer>
 
       <RightContainer>
-        {!hideRightText && <Text marginRight={15}>Selecionar</Text>}
+        {!hideRightText && <Text marginRight={15}>{rightText}</Text>}
         <ArrowRight />
       </RightContainer>
     </Container>

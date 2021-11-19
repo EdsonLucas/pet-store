@@ -18,10 +18,12 @@ import { colors } from '~/styles/global';
 export default function PersonalData({ navigation, nextStep }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [birth, setBirth] = useState('');
 
   const emailRef = useRef(null);
+  const passRef = useRef(null);
   const phoneRef = useRef(null);
   const birthRef = useRef(null);
 
@@ -57,13 +59,28 @@ export default function PersonalData({ navigation, nextStep }) {
             <InputText>E-mail</InputText>
             <Input
               ref={emailRef}
+              autoCapitalize='none'
               keyboardType='email-address'
               returnKeyType='next'
               value={email}
               onChangeText={(text) => {
                 setEmail(text.trim());
               }}
+              onSubmitEditing={() => passRef.current.focus()}
+            />
+          </InputContainer>
+
+          <InputContainer>
+            <InputText>Senha</InputText>
+            <Input
+              ref={passRef}
+              returnKeyType='next'
+              value={password}
+              onChangeText={(text) => {
+                setPassword(text);
+              }}
               onSubmitEditing={() => phoneRef.current.focus()}
+              secureTextEntry
             />
           </InputContainer>
 

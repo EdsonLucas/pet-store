@@ -146,3 +146,23 @@ export const AddFavorite = styled.TouchableOpacity.attrs({
 export const TitleCards = styled(Title)`
   font-size: 20px;
 `;
+
+export const BoxItem = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  border-width: 2px;
+  border-color: ${(props) => props.borderColor || colors.transparent};
+  background-color: ${colors.white};
+  padding: 3px 23px 15px 23px;
+  margin: 10px 0;
+  border-radius: ${metrics.baseRadius}px;
+`;
+
+export const RowTextContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;

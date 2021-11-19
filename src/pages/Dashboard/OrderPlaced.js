@@ -47,7 +47,7 @@ function OrderPlaced({ navigation }) {
 
   return (
     <>
-      <Container flex='0' backgroundColor={colors.gray} />
+      <Container flex={0.01} backgroundColor={colors.gray} />
       <BackButton onPress={() => navigation.goBack()} />
 
       <Content>
