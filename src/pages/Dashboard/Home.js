@@ -12,7 +12,7 @@ import {
   ForYouContainer,
   ForYouHeader,
   ForYouContent,
-  ForYouItem,
+  ForYouButton,
   FavoritesContainer,
   Favorites,
   StoreContainer,
@@ -23,11 +23,7 @@ import {
   StoreDescription,
   StoreShipping,
   AddFavorite,
-  BackgroudImage,
-  Footer,
   TitleCards,
-  BoxItem,
-  RowTextContainer,
 } from '~/styles/dashboard/home';
 import { colors, metrics } from '~/styles/global';
 import { Container, Title, Text, Subtitle } from '~/styles/global/general';
@@ -39,21 +35,15 @@ import FunnyGoatLogo from '~/assets/images/funny-goat-logo.png';
 import AnimalShopLogo from '~/assets/images/animal-shop-logo.png';
 import PetsPlayLogo from '~/assets/images/pets-play-logo.png';
 import Heart from '~/assets/icons/heart.svg';
-import AddressHouseIcon from '~/assets/icons/address-house.svg';
-
-import Modal from '~/components/Modal/Modal';
 import ProductItem from '~/components/ProductItem';
 import Spacer from '~/components/Spacer';
-import OutlineButton from '~/components/Button/OutlineButton';
 
 function Home({ navigation }) {
-  const [addressIsVisible, setAddressIsVisible] = useState(false);
-
   return (
     <>
       <Container backgroundColor={colors.gray}>
         <Content showsVerticalScrollIndicator={false}>
-          <Location onPress={() => setAddressIsVisible(true)}>
+          <Location onPress={() => navigation.navigate('address-page')}>
             <LocationSubtitle>Localização</LocationSubtitle>
             <LocationTitle>Campo Grande, Cariacica</LocationTitle>
           </Location>
@@ -63,11 +53,20 @@ function Home({ navigation }) {
               <Text color={colors.white} marginBottom={10}>
                 Bem-vindo ao Pet Store
               </Text>
-              <Title color={colors.white} marginBottom={18}>
-                Ganhe 5% de desconto {'\n'}no primeiro pedido
+
+              <Title
+                style={{ fontSize: 21 }}
+                color={colors.white}
+                marginBottom={18}
+              >
+                Ganhe 5% de desconto {'\n'}em produtos selecionados
               </Title>
 
-              <Button style={{ width: '45%' }} backgroundColor={colors.black}>
+              <Button
+                style={{ width: '45%' }}
+                backgroundColor={colors.black}
+                onPress={() => navigation.navigate('selected-products-store')}
+              >
                 Pegar agora
               </Button>
 
@@ -79,7 +78,11 @@ function Home({ navigation }) {
             <ForYouHeader>
               <TitleCards>Para você</TitleCards>
 
-              <Text>Ver Todos</Text>
+              <ForYouButton
+                onPress={() => navigation.navigate('for-you-store')}
+              >
+                <Text>Ver Todos</Text>
+              </ForYouButton>
             </ForYouHeader>
 
             <ForYouContent horizontal showsHorizontalScrollIndicator={false}>
@@ -214,47 +217,6 @@ function Home({ navigation }) {
           </StoreContainer>
         </Content>
       </Container>
-
-      {addressIsVisible && (
-        <Modal
-          isOpen={addressIsVisible}
-          onClosed={() => setAddressIsVisible(false)}
-        >
-          <Title marginBottom={15}>Meus Endereços</Title>
-
-          <BoxItem borderColor={colors.yellow}>
-            <BackgroudImage color={colors.transparent}>
-              <AddressHouseIcon />
-            </BackgroudImage>
-
-            <TextContainer>
-              <Subtitle color={colors.black} marginTop={16}>
-                R. Vicente Santório Fantini, 80
-              </Subtitle>
-              <Text>Campo Grande, Cariacica - ES</Text>
-            </TextContainer>
-          </BoxItem>
-
-          <BoxItem>
-            <BackgroudImage color={colors.transparent}>
-              <AddressHouseIcon />
-            </BackgroudImage>
-
-            <TextContainer>
-              <Subtitle color={colors.black} marginTop={16}>
-                R. Vicente Santório Fantini, 80
-              </Subtitle>
-              <Text>Campo Grande, Cariacica - ES</Text>
-            </TextContainer>
-          </BoxItem>
-
-          <OutlineButton style={{ marginTop: 30 }}>
-            Adicionar novo endereço
-          </OutlineButton>
-
-          <Spacer height={20} />
-        </Modal>
-      )}
     </>
   );
 }

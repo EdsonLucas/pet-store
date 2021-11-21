@@ -17,7 +17,15 @@ import OrderPlaced from '~/pages/Dashboard/OrderPlaced';
 import PageStore from '~/pages/Dashboard/Product/PageStore';
 import Product from '~/pages/Dashboard/Product/Product';
 import About from '~/pages/Dashboard/Profile/About';
-import RegisterCreditCard from '~/pages/Dashboard/RegisterCreditCard';
+import PaymentForm from '~/pages/Dashboard/PaymentForm';
+import StoreSignature from '~/pages/Dashboard/Signature/StoreSignature';
+import SignatureDetails from '~/pages/Dashboard/Signature/SignatureDetails';
+import CreateSignature from '~/pages/Dashboard/Signature/CreateSignature';
+import AddressPage from '~/pages/Dashboard/AddressPage';
+import UserInfo from '~/pages/Dashboard/Profile/UserInfo';
+import ChoosePet from '~/pages/Dashboard/Profile/ChoosePet';
+import ForYouStore from '~/pages/Dashboard/ForYouStore';
+import SelectedProductsStore from '~/pages/Dashboard/SelectedProductsStore';
 
 // icons
 import HomeIcon from '~/assets/icons/home.svg';
@@ -111,7 +119,18 @@ const App = () => (
     <Stack.Screen name='product' component={Product} />
     <Stack.Screen name='page-store' component={PageStore} />
     <Stack.Screen name='about' component={About} />
-    <Stack.Screen name='register-credit-card' component={RegisterCreditCard} />
+    <Stack.Screen name='user-info' component={UserInfo} />
+    <Stack.Screen name='address-page' component={AddressPage} />
+    <Stack.Screen name='payment-form' component={PaymentForm} />
+    <Stack.Screen name='store-signature' component={StoreSignature} />
+    <Stack.Screen name='signature-details' component={SignatureDetails} />
+    <Stack.Screen name='create-signature' component={CreateSignature} />
+    <Stack.Screen name='choose-pet' component={ChoosePet} />
+    <Stack.Screen name='for-you-store' component={ForYouStore} />
+    <Stack.Screen
+      name='selected-products-store'
+      component={SelectedProductsStore}
+    />
   </Stack.Navigator>
 );
 

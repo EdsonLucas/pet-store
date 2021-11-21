@@ -44,9 +44,7 @@ export const TextStoreContainer = styled.View`
   flex-direction: column;
 `;
 
-export const AccordionTitleContainer = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
-})`
+export const AccordionTitleContainer = styled.View`
   padding: 15px ${metrics.basePadding}px;
   background-color: ${colors.white};
   border-top-width: 2px;

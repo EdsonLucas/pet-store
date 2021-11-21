@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { colors, metrics } from '~/styles/global';
-import { Subtitle } from '~/styles/global/general';
+import { Title, Text, Subtitle } from '~/styles/global/general';
 
 export const BoxContainer = styled.ScrollView`
   background-color: ${colors.gray};
@@ -36,7 +36,7 @@ export const BackgroudImage = styled.View`
 `;
 
 export const TextContainer = styled.View`
-  align-items: center;
+  align-items: ${(props) => props.alignItems || `center`};
 
   margin-left: 20px;
 `;
@@ -61,4 +61,35 @@ export const DescriptionContainer = styled.View`
 export const ButtonContainer = styled.View`
   margin-top: 20px;
   padding: 0 ${metrics.basePadding}px;
+`;
+
+export const StoreItem = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: ${colors.white};
+  padding: 10px 23px;
+  border-radius: ${metrics.baseRadius}px;
+  margin-top: 20px;
+`;
+
+export const StoreImageContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const StoreTitle = styled(Title)`
+  font-size: 18px;
+`;
+
+export const StoreDescription = styled(Text)`
+  margin-top: -3px;
+`;
+
+export const StoreShipping = styled(Text)`
+  margin-top: 10px;
+  color: ${colors.green};
 `;

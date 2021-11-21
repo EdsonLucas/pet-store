@@ -12,6 +12,7 @@ import {
   OrderItem,
   QuantityItem,
   FooterContainer,
+  ButtonContainer,
 } from '~/styles/dashboard/orders';
 import { colors } from '~/styles/global';
 import { Container, Title, Text, Subtitle } from '~/styles/global/general';
@@ -30,34 +31,19 @@ function SignaturePage({ navigation }) {
       <Content showsVerticalScrollIndicator={false}>
         <Title marginBottom={20}>Assinatura</Title>
 
-        <HistoryBox onPress={() => navigation.navigate('order-placed')}>
+        <HistoryBox onPress={() => navigation.navigate('signature-details')}>
           <HeaderContainer>
-            <LogoContainer>
-              <Image
-                source={CatFoodLogo}
-                resizeMode='cover'
-                style={{
-                  height: 62,
-                  width: 62,
-                }}
-              />
-
-              <TextContainer>
-                <Subtitle color={colors.black}>Cat Food</Subtitle>
-                <Subtitle style={{ fontSize: 15 }}>Aberto</Subtitle>
-              </TextContainer>
-            </LogoContainer>
+            <TextContainer marginLeft={5}>
+              <Subtitle color={colors.black}>Minha assinatura</Subtitle>
+              <Subtitle style={{ fontSize: 15 }}>
+                Próxima entrega para o dia 25
+              </Subtitle>
+            </TextContainer>
 
             <ArrowRight />
           </HeaderContainer>
 
           <OrderContainer>
-            <OrderStatus>
-              <ConfirmIcon />
-
-              <Text marginLeft={10}>Pedido Concluído</Text>
-            </OrderStatus>
-
             <OrderItem>
               <QuantityItem>
                 <Text style={{ color: colors.black }}>1</Text>
@@ -70,16 +56,21 @@ function SignaturePage({ navigation }) {
           </OrderContainer>
 
           <FooterContainer>
-            <Text style={{ color: colors.yellow }}>Detalhes</Text>
+            <Text style={{ color: colors.yellow }}>Mais detalhes</Text>
           </FooterContainer>
         </HistoryBox>
 
         <Spacer />
       </Content>
 
-      <OutlineButton style={{ marginBottom: 10 }}>
-        Criar nova assinatura
-      </OutlineButton>
+      <ButtonContainer>
+        <OutlineButton
+          style={{ marginBottom: 10 }}
+          onPress={() => navigation.navigate('store-signature')}
+        >
+          Criar nova assinatura
+        </OutlineButton>
+      </ButtonContainer>
     </Container>
   );
 }

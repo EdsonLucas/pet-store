@@ -38,7 +38,9 @@ const WelcomeSignature = ({ navigation }) => (
       </SubtitleText>
 
       <ButtonContainer>
-        <Button onPress={() => {}}>Crie sua assinatura</Button>
+        <Button onPress={() => navigation.navigate('store-signature')}>
+          Crie sua assinatura
+        </Button>
       </ButtonContainer>
     </Header>
 
@@ -51,7 +53,7 @@ const WelcomeSignature = ({ navigation }) => (
         textAlign='center'
         style={{ width: '60%' }}
       >
-        15% de desconto em suas compras
+        10% de desconto em suas compras
       </Subtitle>
     </AdvantageContainer>
 
@@ -73,7 +75,7 @@ const WelcomeSignature = ({ navigation }) => (
       </HowItWorksItem>
 
       <HowItWorksItem>
-        <Title color={colors.white}>1. </Title>
+        <Title color={colors.white}>2. </Title>
         <Calendar />
         <Subtitle style={{ width: '60%' }} marginLeft={30} color={colors.white}>
           Escolhe a frequência de entrega (Ex.: a cada 15 dias)
@@ -81,7 +83,7 @@ const WelcomeSignature = ({ navigation }) => (
       </HowItWorksItem>
 
       <HowItWorksItem>
-        <Title color={colors.white}>1. </Title>
+        <Title color={colors.white}>3. </Title>
         <AddressHouseIcon />
         <Subtitle style={{ width: '60%' }} marginLeft={30} color={colors.white}>
           Acerta seu pagamento na data combinada
@@ -89,7 +91,7 @@ const WelcomeSignature = ({ navigation }) => (
       </HowItWorksItem>
 
       <HowItWorksItem>
-        <Title color={colors.white}>1. </Title>
+        <Title color={colors.white}>4. </Title>
         <CreditCard />
         <Subtitle style={{ width: '60%' }} marginLeft={30} color={colors.white}>
           Pronto! Receberá seus produtos sempre na data escolhida
@@ -98,7 +100,9 @@ const WelcomeSignature = ({ navigation }) => (
     </HowItWorksContainer>
 
     <ButtonContainer>
-      <Button onPress={() => {}}>Crie sua assinatura</Button>
+      <Button onPress={() => navigation.navigate('store-signature')}>
+        Crie sua assinatura
+      </Button>
     </ButtonContainer>
 
     <DogImage />

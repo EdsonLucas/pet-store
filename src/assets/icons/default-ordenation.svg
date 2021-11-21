@@ -1,11 +1,11 @@
 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.28223 12.0309H7.28223" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M20.2822 6.05286L17.2822 6.05286" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M20.2822 18.0529L17.2822 18.0529" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M14.2822 12.0419L20.2822 12.0419" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M10.2822 6.04187L4.28223 6.04187" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M10.2822 18.0419L4.28223 18.0419" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M11.2822 12.0419C11.2822 13.1464 10.3868 14.0419 9.28223 14.0419C8.17766 14.0419 7.28223 13.1464 7.28223 12.0419C7.28223 10.9373 8.17766 10.0419 9.28223 10.0419C10.3868 10.0419 11.2822 10.9373 11.2822 12.0419Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M13.2822 6.04187C13.2822 4.9373 14.1777 4.04187 15.2822 4.04187C16.3868 4.04187 17.2822 4.9373 17.2822 6.04187C17.2822 7.14644 16.3868 8.04187 15.2822 8.04187C14.1777 8.04187 13.2822 7.14644 13.2822 6.04187Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M13.2822 18.0419C13.2822 16.9373 14.1777 16.0419 15.2822 16.0419C16.3868 16.0419 17.2822 16.9373 17.2822 18.0419C17.2822 19.1464 16.3868 20.0419 15.2822 20.0419C14.1777 20.0419 13.2822 19.1464 13.2822 18.0419Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M4.28223 12.0309H7.28223" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M20.2822 6.05286L17.2822 6.05286" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M20.2822 18.0529L17.2822 18.0529" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M14.2822 12.0419L20.2822 12.0419" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M10.2822 6.04187L4.28223 6.04187" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M10.2822 18.0419L4.28223 18.0419" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M11.2822 12.0419C11.2822 13.1464 10.3868 14.0419 9.28223 14.0419C8.17766 14.0419 7.28223 13.1464 7.28223 12.0419C7.28223 10.9373 8.17766 10.0419 9.28223 10.0419C10.3868 10.0419 11.2822 10.9373 11.2822 12.0419Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M13.2822 6.04187C13.2822 4.9373 14.1777 4.04187 15.2822 4.04187C16.3868 4.04187 17.2822 4.9373 17.2822 6.04187C17.2822 7.14644 16.3868 8.04187 15.2822 8.04187C14.1777 8.04187 13.2822 7.14644 13.2822 6.04187Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M13.2822 18.0419C13.2822 16.9373 14.1777 16.0419 15.2822 16.0419C16.3868 16.0419 17.2822 16.9373 17.2822 18.0419C17.2822 19.1464 16.3868 20.0419 15.2822 20.0419C14.1777 20.0419 13.2822 19.1464 13.2822 18.0419Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
 </svg>

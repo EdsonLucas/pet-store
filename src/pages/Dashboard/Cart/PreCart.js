@@ -107,7 +107,11 @@ function PreCart({ navigation }) {
           >
             Comprar
           </Button>
-          <OutlineButton>Criar Assinatura</OutlineButton>
+          <OutlineButton
+            onPress={() => navigation.navigate('create-signature')}
+          >
+            Criar Assinatura
+          </OutlineButton>
         </BottomContainer>
       </Content>
     </>

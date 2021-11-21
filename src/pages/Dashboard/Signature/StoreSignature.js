@@ -2,24 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 // import Accordion from 'react-native-collapsible/Accordion';
 import {
-  Header,
-  BackContainer,
-  BackButtonContainer,
-  StoreContainer,
-  TextStoreContainer,
+  Content,
   AccordionTitleContainer,
   AccordionTitle,
   BoxContainer,
   BoxItem,
   BackgroudImage,
   TextContainer,
-} from '~/styles/dashboard/product/pagestore';
+  Banner,
+  BannerItem,
+  SignatureBanner,
+  FavoritesContainer,
+  TitleCards,
+  Favorites,
+} from '~/styles/dashboard/signature/signaturestore';
 import { Container, Title, Subtitle, Text } from '~/styles/global/general';
 
-import AnimalShopLogo from '~/assets/images/animal-shop-logo.png';
 import GoldenFood from '~/assets/images/golden.png';
+import CatFoodLogo from '~/assets/images/cat-food-logo.png';
+import ToysStoreLogo from '~/assets/images/toys-store-logo.png';
+import FunnyGoatLogo from '~/assets/images/funny-goat-logo.png';
 
 import BackButton from '~/components/Button/BackButton';
+import Input from '~/components/Input/Input';
+
 import { colors, metrics } from '~/styles/global';
 
 const SECTIONS = [
@@ -50,15 +56,7 @@ const SECTIONS = [
   },
 ];
 
-const PageStore = ({ navigation }) => {
-  // const [activeSections, setActiveSections] = useState([]);
-
-  // const renderHeader = (section) => (
-  //   <AccordionTitleContainer>
-  //     <AccordionTitle>{section.title}</AccordionTitle>
-  //   </AccordionTitleContainer>
-  // );
-
+export default function StoreSignature({ navigation, nextStep }) {
   const renderContent = (section) => (
     <>
       {section.products.map((item) => (
@@ -92,54 +90,77 @@ const PageStore = ({ navigation }) => {
     </>
   );
 
-  // const updateSections = (item) => {
-  //   setActiveSections(item);
-  // };
-
   return (
     <>
+      <Container backgroundColor={colors.gray} />
       <BoxContainer showsVerticalScrollIndicator={false}>
-        <Header>
-          <BackContainer>
-            <BackButtonContainer>
-              <BackButton
-                style={{ marginLeft: 9, marginTop: 19 }}
-                onPress={() => navigation.goBack()}
-              />
-            </BackButtonContainer>
-          </BackContainer>
+        <BackButton onPress={() => navigation.goBack()} />
 
-          <StoreContainer>
-            <TextStoreContainer>
-              <Title>Animal Shop</Title>
-              <Text>Produtos variados • 5 km</Text>
-            </TextStoreContainer>
+        <Banner horizontal>
+          <BannerItem>
+            <Title color={colors.white} marginBottom={5}>
+              Assinou, {'\n'}Economizou
+            </Title>
 
+            <Text color={colors.white} marginBottom={10}>
+              Tudo que você {'\n'}precisa em um {'\n'}só lugar!
+            </Text>
+
+            <SignatureBanner />
+          </BannerItem>
+        </Banner>
+
+        <Content>
+          <Input
+            style={{ backgroundColor: colors.white }}
+            placeholder='Produtos, Lojas e etc…'
+            returnKeyType='send'
+            onSubmitEditing={() => navigation.navigate('list-search')}
+          />
+        </Content>
+
+        <FavoritesContainer>
+          <TitleCards
+            marginLeft={metrics.basePadding}
+            marginTop={25}
+            marginBottom={15}
+          >
+            Seus Favoritos
+          </TitleCards>
+
+          <Favorites horizontal showsHorizontalScrollIndicator={false}>
             <Image
-              source={AnimalShopLogo}
+              source={CatFoodLogo}
+              resizeMode='cover'
+              style={{
+                height: 70,
+                width: 70,
+                alignSelf: 'center',
+                marginHorizontal: 10,
+              }}
+            />
+            <Image
+              source={ToysStoreLogo}
               resizeMode='cover'
               style={{
                 height: 65,
-                width: 68,
+                width: 80,
+                alignSelf: 'center',
+                marginHorizontal: 10,
               }}
             />
-          </StoreContainer>
-
-          <Text marginLeft={metrics.basePadding}>
-            Hoje, 40 - 50 min • Entrega Grátis
-          </Text>
-        </Header>
-
-        {/* <Accordion
-          sections={SECTIONS}
-          activeSections={activeSections}
-          renderHeader={renderHeader}
-          renderContent={renderContent}
-          onChange={(item) => updateSections(item)}
-          expandMultiple
-          underlayColor={colors.transparent}
-          keyExtractor={(item, indice) => console.log(indice)}
-        /> */}
+            <Image
+              source={FunnyGoatLogo}
+              resizeMode='cover'
+              style={{
+                height: 68,
+                width: 90,
+                alignSelf: 'center',
+                marginHorizontal: 10,
+              }}
+            />
+          </Favorites>
+        </FavoritesContainer>
 
         {SECTIONS.map((item, index) => (
           <>
@@ -154,6 +175,4 @@ const PageStore = ({ navigation }) => {
       <Container flex={0.1} backgroundColor={colors.white} />
     </>
   );
-};
-
-export default PageStore;
+}

@@ -34,7 +34,7 @@ export const LogoContainer = styled.View`
 `;
 
 export const TextContainer = styled.View`
-  margin-left: 15px;
+  margin-left: ${(props) => props.marginLeft || 15}px;
 `;
 
 export const OrderContainer = styled.View`
@@ -67,4 +67,8 @@ export const QuantityItem = styled.View`
 export const FooterContainer = styled.View`
   margin-top: 15px;
   align-items: center;
+`;
+
+export const ButtonContainer = styled.View`
+  padding: 0 ${metrics.basePadding}px 10px;
 `;

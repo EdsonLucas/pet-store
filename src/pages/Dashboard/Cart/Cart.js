@@ -17,6 +17,18 @@ import {
   QuantityProduct,
   PaymentFormContainer,
   RightPaymentContainer,
+  ProductDetailsContainer,
+  PlusContainer,
+  PlusButton,
+  CountItem,
+  MinusButton,
+  Footer,
+  DeleteContainer,
+  DeleteButton,
+  UpdateContainer,
+  UpdateButton,
+  PaymentModalTitleContainer,
+  PaymentModalTitle,
 } from '~/styles/dashboard/cart/cart';
 import { Container, Title, Text, Subtitle } from '~/styles/global/general';
 
@@ -31,9 +43,13 @@ import { colors, metrics } from '~/styles/global';
 import BackButton from '~/components/Button/BackButton';
 import Spacer from '~/components/Spacer';
 import Button from '~/components/Button/Button';
+import Modal from '~/components/Modal/Modal';
+import SelectButton from '~/components/Button/SelectButton';
 
 function Cart({ navigation }) {
   const [countProduct, setCountProduct] = useState(1);
+  const [productModal, setProductModal] = useState(false);
+  const [paymentModal, setPaymentModal] = useState(false);
 
   return (
     <>
@@ -50,7 +66,9 @@ function Cart({ navigation }) {
 
         <BoxContainer showsVerticalScrollIndicator={false}>
           <BoxItem>
-            <AddressContainer>
+            <AddressContainer
+              onPress={() => navigation.navigate('address-page')}
+            >
               <LeftContainer>
                 <Location />
 
@@ -75,7 +93,7 @@ function Cart({ navigation }) {
             </RowContainer>
 
             <RecipProducts>
-              <RecipProductItem>
+              <RecipProductItem onPress={() => setProductModal(true)}>
                 <ProductLeftContainer>
                   <QuantityProduct>
                     <Text color={colors.black}>1</Text>
@@ -103,12 +121,12 @@ function Cart({ navigation }) {
             <RowContainer>
               <CardIcon />
               <Subtitle marginLeft={15} color={colors.black}>
-                Formas de pagamento
+                Forma de pagamento
               </Subtitle>
             </RowContainer>
 
-            <PaymentFormContainer>
-              <Text>Pago pelo app</Text>
+            <PaymentFormContainer onPress={() => setPaymentModal(true)}>
+              <Text>Pagar pelo app</Text>
 
               <RightPaymentContainer>
                 <CreditCardIcon style={{ marginTop: 5 }} />
@@ -118,12 +136,6 @@ function Cart({ navigation }) {
 
                 <ArrowRight />
               </RightPaymentContainer>
-            </PaymentFormContainer>
-
-            <PaymentFormContainer>
-              <Text>Pagamento na entrega</Text>
-
-              <ArrowRight />
             </PaymentFormContainer>
           </BoxItem>
 
@@ -154,6 +166,81 @@ function Cart({ navigation }) {
           <Button style={{ marginBottom: 10 }}>Fechar pedido</Button>
         </BottomContainer>
       </Content>
+
+      {productModal && (
+        <Modal isOpen={productModal} onClosed={() => setProductModal(false)}>
+          <Title marginBottom={70}>
+            Ração Golden 3k para gatos, sabor carne
+          </Title>
+
+          <ProductDetailsContainer>
+            <PlusContainer>
+              <PlusButton onPress={() => setCountProduct(countProduct + 1)}>
+                <Text style={{ fontSize: 20, marginTop: 6 }}> + </Text>
+              </PlusButton>
+
+              <CountItem>
+                <Text textAlign='center' color={colors.black}>
+                  {countProduct}
+                </Text>
+              </CountItem>
+
+              <MinusButton
+                onPress={() => setCountProduct(countProduct - 1 || 1)}
+              >
+                <Text style={{ fontSize: 20, marginTop: 6 }}> - </Text>
+              </MinusButton>
+            </PlusContainer>
+
+            <Footer>
+              <DeleteContainer>
+                <DeleteButton>
+                  <Text color={colors.white}>Remover item</Text>
+                </DeleteButton>
+              </DeleteContainer>
+
+              <UpdateContainer>
+                <UpdateButton>
+                  <Text color={colors.white}>Atualizar</Text>
+
+                  <Text marginLeft={40} color={colors.white}>
+                    R$ 49,59
+                  </Text>
+                </UpdateButton>
+              </UpdateContainer>
+            </Footer>
+          </ProductDetailsContainer>
+          <Spacer height={20} />
+        </Modal>
+      )}
+
+      {paymentModal && (
+        <Modal isOpen={paymentModal} onClosed={() => setPaymentModal(false)}>
+          <Title marginBottom={20}>Selecione a forma de pagamento</Title>
+
+          <PaymentModalTitleContainer>
+            <PaymentModalTitle marginTop={10}>Cartão</PaymentModalTitle>
+          </PaymentModalTitleContainer>
+
+          <SelectButton
+            title='Pagar pelo app'
+            onPress={() => [
+              setPaymentModal(false),
+              navigation.navigate('payment-form'),
+            ]}
+          />
+
+          <SelectButton title='Pagar na entrega' onPress={() => {}} />
+
+          <PaymentModalTitleContainer>
+            <PaymentModalTitle>Dinheiro</PaymentModalTitle>
+          </PaymentModalTitleContainer>
+
+          <SelectButton title='Pagar na entrega' onPress={() => {}} />
+
+          <Spacer height={20} />
+        </Modal>
+      )}
     </>
   );
 }

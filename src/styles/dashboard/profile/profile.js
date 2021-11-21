@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { metrics, colors } from '~/styles/global';
-import { Text, Subtitle } from '~/styles/global/general';
+import { Text, Title } from '~/styles/global/general';
 
 export const Content = styled.ScrollView`
   padding: ${metrics.basePadding}px;
@@ -26,10 +26,10 @@ export const UserAvatar = styled.View`
   margin-right: 17px;
 `;
 
-export const UserTitle = styled(Subtitle)`
-  color: ${colors.black};
-  font-size: 18px;
+export const UserTitle = styled(Title)`
+  font-size: 25px;
   margin-top: 2px;
+  line-height: 30px;
 `;
 
 export const CategoryContainer = styled.View`

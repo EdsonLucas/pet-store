@@ -10,10 +10,16 @@ import {
   TextContainer,
   DescriptionContainer,
   ButtonContainer,
+  StoreItem,
+  StoreImageContainer,
+  StoreTitle,
+  StoreDescription,
+  StoreShipping,
 } from '~/styles/dashboard/product/product';
 import { Container, Title, Text, Subtitle } from '~/styles/global/general';
 
 import GoldenFood from '~/assets/images/golden.png';
+import AnimalShopLogo from '~/assets/images/animal-shop-logo.png';
 
 import { colors } from '~/styles/global';
 
@@ -56,10 +62,31 @@ function Product({ navigation }) {
             </Title>
           </TextContainer>
 
-          <Button>Adicionar ao carinho</Button>
+          <Button onPress={() => navigation.navigate('pre-cart')}>
+            Adicionar ao carinho
+          </Button>
         </HeaderProduct>
 
         <Content>
+          <StoreItem onPress={() => navigation.navigate('page-store')}>
+            <StoreImageContainer>
+              <Image
+                source={AnimalShopLogo}
+                resizeMode='cover'
+                style={{
+                  height: 65,
+                  width: 68,
+                }}
+              />
+
+              <TextContainer alignItems='flex-start'>
+                <StoreTitle>Animal Shop</StoreTitle>
+                <StoreDescription>Produtos variados • 5km</StoreDescription>
+                <StoreShipping>Entrega Grátis</StoreShipping>
+              </TextContainer>
+            </StoreImageContainer>
+          </StoreItem>
+
           <BoxItem marginTop={20}>
             <Subtitle color={colors.black} marginBottom={10}>
               Descrição
@@ -117,7 +144,9 @@ function Product({ navigation }) {
         </Content>
 
         <ButtonContainer>
-          <Button>Adicionar ao carinho</Button>
+          <Button onPress={() => navigation.navigate('pre-cart')}>
+            Adicionar ao carinho
+          </Button>
         </ButtonContainer>
         <Spacer height={50} />
       </BoxContainer>

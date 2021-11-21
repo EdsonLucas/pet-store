@@ -55,7 +55,9 @@ export const RowContainer = styled.View`
   flex-direction: row;
 `;
 
-export const AddressContainer = styled.View`
+export const AddressContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -135,7 +137,9 @@ export const RecipProducts = styled.View`
   margin-top: 10px;
 `;
 
-export const RecipProductItem = styled.View`
+export const RecipProductItem = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -172,19 +176,104 @@ export const ValueItem = styled.View`
   margin: 5px 0;
 `;
 
-export const PaymentFormContainer = styled.View`
+export const PaymentFormContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
 
-  border-bottom-width: 2px;
-  border-bottom-color: #c3c6db40;
-  padding: 5px 0 10px;
-  margin: 5px 0 0;
+  margin: 20px 0 0;
 `;
 
 export const RightPaymentContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+`;
+
+export const ProductDetailsContainer = styled.View`
+  align-items: center;
+`;
+
+export const PlusContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  border-bottom-width: 2px;
+  border-bottom-color: #c3c6db30;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+`;
+
+export const CountItem = styled.View`
+  align-self: center;
+
+  width: 35px;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 4px 8px;
+  background-color: #c3c6db50;
+  border-radius: 7px;
+`;
+
+export const PlusButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.5,
+})`
+  padding: 5px 9px;
+  border: 1px;
+  border-color: #c3c6db40;
+  border-radius: 10px;
+  margin-left: 10px;
+`;
+
+export const MinusButton = styled(PlusButton)``;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const DeleteContainer = styled.View`
+  margin-right: 20px;
+`;
+
+export const DeleteButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: ${colors.red};
+  padding: 15px 20px;
+  border-radius: ${metrics.baseRadius}px;
+`;
+
+export const UpdateContainer = styled.View``;
+
+export const UpdateButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: ${colors.yellow};
+  padding: 15px 20px;
+  border-radius: ${metrics.baseRadius}px;
+`;
+
+export const PaymentModalTitleContainer = styled.View`
+  padding-bottom: 20px;
+  border-bottom-width: 2px;
+  border-bottom-color: #c3c6db30;
+`;
+
+export const PaymentModalTitle = styled(Subtitle)`
+  color: ${colors.black};
+  margin-top: ${(props) => props.marginTop || 20}px;
 `;

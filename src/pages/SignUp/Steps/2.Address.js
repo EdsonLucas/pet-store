@@ -14,7 +14,7 @@ import { Container, Title, Text } from '~/styles/global/general';
 import BackButton from '~/components/Button/BackButton';
 import Input from '~/components/Input/Input';
 import OutlineButton from '~/components/Button/OutlineButton';
-import SelecButton from '~/components/Button/SelectButton';
+import SelectButton from '~/components/Button/SelectButton';
 import ModalFull from '~/components/Modal/ModalFull';
 import StateList from '~/data/state';
 import CitiesList from '~/data/cities';
@@ -68,13 +68,13 @@ export default function Address({ prevStep, nextStep }) {
               />
             </InputContainer>
 
-            <SelecButton
+            <SelectButton
               title='Estado'
               onPress={() => setStateModalActive(true)}
               rightText={state.length === 0 ? 'Selecionar' : state.nome}
             />
 
-            <SelecButton
+            <SelectButton
               title='Cidade'
               onPress={() =>
                 state.length === 0 ? {} : setCityModalActive(true)
@@ -160,7 +160,7 @@ export default function Address({ prevStep, nextStep }) {
           <Title>Selecione o Estado</Title>
 
           {StateList.map((item) => (
-            <SelecButton
+            <SelectButton
               key={item.id_uf}
               title={item.nome}
               onPress={() => {
@@ -183,7 +183,7 @@ export default function Address({ prevStep, nextStep }) {
           <Title>Selecione a Cidade</Title>
 
           {CitiesList.states[state.id - 1].cities.map((item) => (
-            <SelecButton
+            <SelectButton
               key={Math.random()}
               title={item}
               onPress={() => {

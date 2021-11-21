@@ -10,7 +10,7 @@ import {
 import { colors } from '~/styles/global';
 import { Container, Title } from '~/styles/global/general';
 
-import SelecButton from '~/components/Button/SelectButton';
+import SelectButton from '~/components/Button/SelectButton';
 import OutlineButton from '~/components/Button/OutlineButton';
 import Spacer from '~/components/Spacer';
 
@@ -21,8 +21,6 @@ function Profile({ navigation }) {
         <Title>Minha Conta</Title>
 
         <UserContainer>
-          <UserAvatar />
-
           <UserTitle>Olá, Márcia!</UserTitle>
         </UserContainer>
 
@@ -30,28 +28,28 @@ function Profile({ navigation }) {
           <CategoryTitle>Configurações</CategoryTitle>
         </CategoryContainer>
 
-        <SelecButton
+        <SelectButton
           title='Meus dados'
           colorTitle={colors.black}
           fontTitle={15}
           subtitle='Minhas informações da conta'
-          onPress={() => {}}
+          onPress={() => navigation.navigate('user-info')}
           hideRightText
         />
-        <SelecButton
+        <SelectButton
           title='Endereços'
           colorTitle={colors.black}
           fontTitle={15}
           subtitle='Meus endereços de entrega'
-          onPress={() => {}}
+          onPress={() => navigation.navigate('address-page')}
           hideRightText
         />
-        <SelecButton
+        <SelectButton
           title='Formas de Pagamento'
           colorTitle={colors.black}
           fontTitle={15}
           subtitle='Minhas formas de pagamento'
-          onPress={() => {}}
+          onPress={() => navigation.navigate('payment-form')}
           hideRightText
         />
 
@@ -59,7 +57,7 @@ function Profile({ navigation }) {
           <CategoryTitle>Informações</CategoryTitle>
         </CategoryContainer>
 
-        <SelecButton
+        <SelectButton
           title='Ajuda'
           colorTitle={colors.black}
           fontTitle={15}
@@ -67,7 +65,7 @@ function Profile({ navigation }) {
           onPress={() => {}}
           hideRightText
         />
-        <SelecButton
+        <SelectButton
           title='Sobre o app'
           colorTitle={colors.black}
           fontTitle={15}

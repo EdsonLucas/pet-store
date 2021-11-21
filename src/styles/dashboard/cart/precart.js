@@ -77,14 +77,14 @@ export const PlusContainer = styled.View`
 
   height: 80%;
   border-left-width: 2px;
-  border-left-color: #C3C6DB30;
+  border-left-color: #c3c6db30;
   margin-left: 10px;
 `;
 
 export const CountItem = styled.View`
   margin-left: 10px;
   padding: 1px 8px;
-  background-color: #C3C6DB50;
+  background-color: #c3c6db50;
   border-radius: 7px;
 `;
 
@@ -93,7 +93,7 @@ export const PlusButton = styled.TouchableOpacity.attrs({
 })`
   padding: 5px 9px;
   border: 1px;
-  border-color: #C3C6DB40;
+  border-color: #c3c6db40;
   border-radius: 10px;
   margin-left: 10px;
 `;

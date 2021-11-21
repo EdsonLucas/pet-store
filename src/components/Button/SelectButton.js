@@ -3,13 +3,15 @@ import {
   Container,
   TextContainer,
   RightContainer,
+  Title,
+  Subtitle,
+  RightText,
 } from '~/styles/components/button/selectbutton';
-import { Text } from '~/styles/global/general';
 
 import ArrowRight from '~/assets/icons/arrow-right.svg';
 import { colors } from '~/styles/global';
 
-const SelecButton = (props) => {
+const SelectButton = (props) => {
   const {
     title,
     colorTitle,
@@ -22,18 +24,18 @@ const SelecButton = (props) => {
   return (
     <Container {...props}>
       <TextContainer>
-        <Text color={colorTitle} style={{ fontSize: fontTitle }}>
+        <Title color={colorTitle} style={{ fontSize: fontTitle }}>
           {title}
-        </Text>
-        {subtitle && <Text>{subtitle}</Text>}
+        </Title>
+        {subtitle && <Subtitle>{subtitle}</Subtitle>}
       </TextContainer>
 
       <RightContainer>
-        {!hideRightText && <Text marginRight={15}>{rightText}</Text>}
+        {!hideRightText && <RightText marginRight={15}>{rightText}</RightText>}
         <ArrowRight />
       </RightContainer>
     </Container>
   );
 };
 
-export default SelecButton;
+export default SelectButton;

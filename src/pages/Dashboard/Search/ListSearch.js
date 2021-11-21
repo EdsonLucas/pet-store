@@ -4,10 +4,7 @@ import {
   Content,
   FilterContainer,
   BoxContainer,
-  BoxItem,
-  BackgroudImage,
   TextContainer,
-  RowTextContainer,
   StoreItem,
   StoreImageContainer,
   StoreTitle,
@@ -184,7 +181,7 @@ function ListSearch({ navigation }) {
 
             <FilterItem>
               <FilterIconContainer>
-                <PriceDelivery color={colors.black} />
+                <PriceDelivery color={colors.grayMedium} />
               </FilterIconContainer>
 
               <Text textAlign='center' color={colors.black}>
@@ -194,7 +191,7 @@ function ListSearch({ navigation }) {
 
             <FilterItem>
               <FilterIconContainer>
-                <TimeDelivery color={colors.black} />
+                <TimeDelivery color={colors.grayMedium} />
               </FilterIconContainer>
 
               <Text textAlign='center' color={colors.black}>

@@ -84,7 +84,12 @@ export const DeliveryColumn = styled.View`
   margin-left: ${(props) => props.marginLeft || 25}px;
 `;
 
-export const RecipContainer = styled.View``;
+export const RecipContainer = styled.View`
+  margin-top: ${(props) => (props.historyOrder ? 20 : 0)}px;
+  border-top-width: ${(props) => (props.historyOrder ? 2 : 0)}px
+  border-top-color: ${(props) =>
+    props.historyOrder ? `#c3c6db40` : colors.transparent};
+`;
 
 export const RecipTitleContainer = styled.View`
   flex-direction: row;
