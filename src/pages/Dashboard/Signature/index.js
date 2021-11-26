@@ -8,7 +8,7 @@ const Signature = ({ navigation }) => {
 
   return (
     <>
-      {!userHasSignature ? (
+      {userHasSignature ? (
         <SignaturePage navigation={navigation} />
       ) : (
         <WelcomeSignature navigation={navigation} />

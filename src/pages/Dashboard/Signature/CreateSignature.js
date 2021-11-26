@@ -49,7 +49,7 @@ import SelectButton from '~/components/Button/SelectButton';
 function CreateSignature({ navigation }) {
   const [countProduct, setCountProduct] = useState(1);
   const [productModal, setProductModal] = useState(false);
-  const [paymentModal, setPaymentModal] = useState(false);
+  const [periodModal, setPeriodModal] = useState(false);
 
   return (
     <>
@@ -73,7 +73,7 @@ function CreateSignature({ navigation }) {
           <SelectButton title='Selecionar Periodicidade' />
 
           <Subtitle marginTop={25} color={colors.grayMedium}>
-            Secundo passo
+            Segundo passo
           </Subtitle>
           <Text marginTop={5}>Selecione o endereço e a forma de pagamento</Text>
 
@@ -104,7 +104,9 @@ function CreateSignature({ navigation }) {
               </Subtitle>
             </RowContainer>
 
-            <PaymentFormContainer onPress={() => setPaymentModal(true)}>
+            <PaymentFormContainer
+              onPress={() => navigation.navigate('payment-form')}
+            >
               <Text>Pagar pelo app</Text>
 
               <RightPaymentContainer>
@@ -194,6 +196,10 @@ function CreateSignature({ navigation }) {
           <Spacer />
         </BoxContainer>
       </Content>
+      {/*
+      {periodModal && (
+
+      )} */}
 
       {productModal && (
         <Modal isOpen={productModal} onClosed={() => setProductModal(false)}>
@@ -238,34 +244,6 @@ function CreateSignature({ navigation }) {
               </UpdateContainer>
             </Footer>
           </ProductDetailsContainer>
-          <Spacer height={20} />
-        </Modal>
-      )}
-
-      {paymentModal && (
-        <Modal isOpen={paymentModal} onClosed={() => setPaymentModal(false)}>
-          <Title marginBottom={20}>Selecione a forma de pagamento</Title>
-
-          <PaymentModalTitleContainer>
-            <PaymentModalTitle marginTop={10}>Cartão</PaymentModalTitle>
-          </PaymentModalTitleContainer>
-
-          <SelectButton
-            title='Pagar pelo app'
-            onPress={() => [
-              setPaymentModal(false),
-              navigation.navigate('payment-form'),
-            ]}
-          />
-
-          <SelectButton title='Pagar na entrega' onPress={() => {}} />
-
-          <PaymentModalTitleContainer>
-            <PaymentModalTitle>Dinheiro</PaymentModalTitle>
-          </PaymentModalTitleContainer>
-
-          <SelectButton title='Pagar na entrega' onPress={() => {}} />
-
           <Spacer height={20} />
         </Modal>
       )}

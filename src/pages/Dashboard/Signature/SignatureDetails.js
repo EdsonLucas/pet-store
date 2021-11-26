@@ -81,7 +81,7 @@ const SignatureDetails = ({ navigation }) => {
     <Container>
       <BackButton onPress={() => navigation.goBack()} />
 
-      <BoxContainer>
+      <BoxContainer showsVerticalScrollIndicator={false}>
         <HeaderContainer>
           <Title marginBottom={20}>Minha assinatura</Title>
 
