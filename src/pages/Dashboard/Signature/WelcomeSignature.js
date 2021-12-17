@@ -38,7 +38,13 @@ const WelcomeSignature = ({ navigation }) => (
       </SubtitleText>
 
       <ButtonContainer>
-        <Button onPress={() => navigation.navigate('store-signature')}>
+        <Button
+          onPress={() =>
+            navigation.navigate('cart-visible-pages', {
+              screen: 'store-signature',
+            })
+          }
+        >
           Crie sua assinatura
         </Button>
       </ButtonContainer>
@@ -100,7 +106,13 @@ const WelcomeSignature = ({ navigation }) => (
     </HowItWorksContainer>
 
     <ButtonContainer>
-      <Button onPress={() => navigation.navigate('store-signature')}>
+      <Button
+        onPress={() =>
+          navigation.navigate('cart-visible-pages', {
+            screen: 'store-signature',
+          })
+        }
+      >
         Crie sua assinatura
       </Button>
     </ButtonContainer>

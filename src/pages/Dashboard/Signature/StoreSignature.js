@@ -28,45 +28,26 @@ import Input from '~/components/Input/Input';
 
 import { colors, metrics } from '~/styles/global';
 
-const SECTIONS = [
-  {
-    title: 'Promoções',
-    products: [
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-    ],
-  },
-  {
-    title: 'Rações',
-    products: [
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-    ],
-  },
-];
+import StoreProductsList from '~/data/store-products';
 
 export default function StoreSignature({ navigation, nextStep }) {
-  const renderContent = (section) => (
+  const [inputValue, setInputValue] = useState('');
+
+  const renderContent = (item) => (
     <>
-      {section.products.map((item) => (
+      {item.productList.map((value) => (
         <BoxItem
           key={Math.random()}
-          onPress={() => navigation.navigate('product')}
+          onPress={() =>
+            navigation.navigate('cart-visible-pages', {
+              screen: 'product',
+              params: { product: value },
+            })
+          }
         >
           <BackgroudImage>
             <Image
-              source={item.image}
+              source={{ uri: value.image }}
               resizeMode='cover'
               style={{
                 alignSelf: 'center',
@@ -78,11 +59,11 @@ export default function StoreSignature({ navigation, nextStep }) {
 
           <TextContainer>
             <Subtitle color={colors.black} marginTop={16}>
-              {item.name}
+              {value.name}
             </Subtitle>
 
             <Subtitle color={colors.green} marginTop={25}>
-              {item.price}
+              {value.price}
             </Subtitle>
           </TextContainer>
         </BoxItem>
@@ -114,8 +95,12 @@ export default function StoreSignature({ navigation, nextStep }) {
           <Input
             style={{ backgroundColor: colors.white }}
             placeholder='Produtos, Lojas e etc…'
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
             returnKeyType='send'
-            onSubmitEditing={() => navigation.navigate('list-search')}
+            onSubmitEditing={() =>
+              navigation.navigate('list-search', { search: inputValue })
+            }
           />
         </Content>
 
@@ -130,26 +115,6 @@ export default function StoreSignature({ navigation, nextStep }) {
 
           <Favorites horizontal showsHorizontalScrollIndicator={false}>
             <Image
-              source={CatFoodLogo}
-              resizeMode='cover'
-              style={{
-                height: 70,
-                width: 70,
-                alignSelf: 'center',
-                marginHorizontal: 10,
-              }}
-            />
-            <Image
-              source={ToysStoreLogo}
-              resizeMode='cover'
-              style={{
-                height: 65,
-                width: 80,
-                alignSelf: 'center',
-                marginHorizontal: 10,
-              }}
-            />
-            <Image
               source={FunnyGoatLogo}
               resizeMode='cover'
               style={{
@@ -162,13 +127,19 @@ export default function StoreSignature({ navigation, nextStep }) {
           </Favorites>
         </FavoritesContainer>
 
-        {SECTIONS.map((item, index) => (
+        {StoreProductsList.map((storeItem) => (
           <>
-            <AccordionTitleContainer key={Math.random()}>
-              <AccordionTitle>{item.title}</AccordionTitle>
-            </AccordionTitleContainer>
+            {storeItem.products.map((productsItem) => (
+              <>
+                <AccordionTitleContainer key={Math.random()}>
+                  <AccordionTitle>
+                    {productsItem.productListTitle}
+                  </AccordionTitle>
+                </AccordionTitleContainer>
 
-            {renderContent(item)}
+                {renderContent(productsItem)}
+              </>
+            ))}
           </>
         ))}
       </BoxContainer>

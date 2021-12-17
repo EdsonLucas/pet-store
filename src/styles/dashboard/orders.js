@@ -48,12 +48,13 @@ export const OrderStatus = styled.View`
   justify-content: flex-start;
 
   margin-top: 14px;
+  margin-bottom: 20px;
 `;
 
 export const OrderItem = styled.View`
   flex-direction: row;
 
-  padding: ${(props) => props.paddingTop || 20}px 0
+  padding: ${(props) => props.paddingTop || 0}px 0
     ${(props) => props.paddingBottom || 17}px 0;
 `;
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image } from 'react-native';
 import {
   Content,
@@ -33,8 +33,19 @@ import ProductItem from '~/components/ProductItem';
 import Modal from '~/components/Modal/Modal';
 import Spacer from '~/components/Spacer';
 
-function ListSearch({ navigation }) {
+import StoreProductsList from '~/data/store-products';
+
+function ListSearch({ navigation, route }) {
   const [filterModalActive, setFilterModalActive] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [store, setStore] = useState(StoreProductsList);
+  const [filteredItem, setFilteredItem] = useState([]);
+
+  const { search } = route.params;
+
+  useEffect(() => {
+    setInputValue(search);
+  }, []);
 
   return (
     <>
@@ -46,7 +57,8 @@ function ListSearch({ navigation }) {
             style={{ backgroundColor: colors.white }}
             placeholder='Produtos, Lojas e etc…'
             returnKeyType='send'
-            value='Ração'
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
           />
 
           <FilterContainer onPress={() => setFilterModalActive(true)}>
@@ -61,23 +73,34 @@ function ListSearch({ navigation }) {
         </Content>
 
         <BoxContainer showsVerticalScrollIndicator={false}>
-          <ProductItem
-            image={GoldenFood}
-            title='Ração Golden para Gatos adultos - Sabo…'
-            store='Cat World'
-            distance='5km'
-            priceDelivery='Entrega Grátis'
-            productPrice='R$ 49,59'
-          />
-
-          <ProductItem
-            image={GoldenFood}
-            title='Ração Golden para Gatos adultos - Sabo…'
-            store='Cat World'
-            distance='5km'
-            priceDelivery='Entrega Grátis'
-            productPrice='R$ 49,59'
-          />
+          {store.map((storeItem) => (
+            <>
+              {storeItem.products.map((productsItem) => (
+                <>
+                  {productsItem.productList.map((item) => (
+                    <>
+                      {item.tipo === inputValue && (
+                        <ProductItem
+                          onPress={() =>
+                            navigation.navigate('cart-visible-pages', {
+                              screen: 'product',
+                              params: { product: item },
+                            })
+                          }
+                          image={{ uri: item.image }}
+                          title={item.name}
+                          store={StoreProductsList[item.storeId].name}
+                          distance={StoreProductsList[item.storeId].distance}
+                          priceDelivery='Entrega Grátis'
+                          productPrice={`R$ ${item.price}`}
+                        />
+                      )}
+                    </>
+                  ))}
+                </>
+              ))}
+            </>
+          ))}
 
           <OutlineButton
             textColor={colors.grayRegular}
@@ -90,62 +113,33 @@ function ListSearch({ navigation }) {
             Lojas relacionadas
           </Subtitle>
 
-          <StoreItem>
-            <StoreImageContainer>
-              <Image
-                source={AnimalShopLogo}
-                resizeMode='cover'
-                style={{
-                  height: 65,
-                  width: 68,
-                }}
-              />
+          {StoreProductsList.map((value) => (
+            <>
+              {value.category === search ||
+                (value.category === 'Produtos variados' && (
+                  <StoreItem>
+                    <StoreImageContainer>
+                      <Image
+                        source={value.avatar}
+                        resizeMode='cover'
+                        style={{
+                          height: value.heightAvatar,
+                          width: value.widthAvatar,
+                        }}
+                      />
 
-              <TextContainer>
-                <StoreTitle>Animal Shop</StoreTitle>
-                <StoreDescription>Produtos variados • 5km</StoreDescription>
-                <StoreShipping>Entrega Grátis</StoreShipping>
-              </TextContainer>
-            </StoreImageContainer>
-          </StoreItem>
-
-          <StoreItem>
-            <StoreImageContainer>
-              <Image
-                source={AnimalShopLogo}
-                resizeMode='cover'
-                style={{
-                  height: 65,
-                  width: 68,
-                }}
-              />
-
-              <TextContainer>
-                <StoreTitle>Animal Shop</StoreTitle>
-                <StoreDescription>Produtos variados • 5km</StoreDescription>
-                <StoreShipping>Entrega Grátis</StoreShipping>
-              </TextContainer>
-            </StoreImageContainer>
-          </StoreItem>
-
-          <StoreItem>
-            <StoreImageContainer>
-              <Image
-                source={AnimalShopLogo}
-                resizeMode='cover'
-                style={{
-                  height: 65,
-                  width: 68,
-                }}
-              />
-
-              <TextContainer>
-                <StoreTitle>Animal Shop</StoreTitle>
-                <StoreDescription>Produtos variados • 5km</StoreDescription>
-                <StoreShipping>Entrega Grátis</StoreShipping>
-              </TextContainer>
-            </StoreImageContainer>
-          </StoreItem>
+                      <TextContainer>
+                        <StoreTitle>{value.name}</StoreTitle>
+                        <StoreDescription>
+                          {value.category} • {value.distance}
+                        </StoreDescription>
+                        <StoreShipping>{value.deliveryPrice}</StoreShipping>
+                      </TextContainer>
+                    </StoreImageContainer>
+                  </StoreItem>
+                ))}
+            </>
+          ))}
 
           <OutlineButton
             textColor={colors.grayRegular}

@@ -2,8 +2,7 @@ import 'react-native-reanimated';
 import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar, LogBox } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import * as SplashScreen from 'expo-splash-screen';
@@ -15,6 +14,9 @@ SplashScreen.preventAutoHideAsync()
     console.log(`SplashScreen.preventAutoHideAsync() succeeded: ${result}`)
   )
   .catch(console.warn); // it's good to explicitly catch and inspect any error
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 
 async function fetchFonts() {
   await Font.loadAsync({
@@ -44,10 +46,10 @@ const App = () => {
     );
   }
   return (
-    <NavigationContainer>
+    <>
       <StatusBar barStyle='dark-content' backgroundColor={colors.whiteLight} />
       <Routes />
-    </NavigationContainer>
+    </>
   );
 };
 

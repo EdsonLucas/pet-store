@@ -75,9 +75,9 @@ export default function AddressPage({ navigation }) {
 
                 <TextContainer>
                   <Text color={colors.black} marginTop={16}>
-                    R. Vicente Santório Fantini, 80
+                    Rua Treze de Maio, 12
                   </Text>
-                  <Text>Campo Grande, Cariacica - ES</Text>
+                  <Text>São Geraldo, Cariacica - ES</Text>
                 </TextContainer>
               </BoxItem>
             </Content>

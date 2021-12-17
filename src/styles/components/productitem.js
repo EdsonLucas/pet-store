@@ -21,8 +21,8 @@ export const BackgroudImage = styled.View`
 `;
 
 export const TextContainer = styled.View`
-  margin-left: 20px;
-  width: 73%;
+  margin-left: ${(props) => props.marginLeft || 20}px;
+  width: ${(props) => props.width || 73}%;
 `;
 
 export const RowTextContainer = styled.View`

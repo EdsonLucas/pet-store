@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import WelcomeSignature from './WelcomeSignature';
 import SignaturePage from './SignaturePage';
 
-const Signature = ({ navigation }) => {
-  const [userHasSignature, setUserHasSignature] = useState(true);
+import useUserStore from '~/store/user.store';
+
+const Signature = ({ navigation, route }) => {
+  const { hasSignature } = useUserStore();
 
   return (
     <>
-      {userHasSignature ? (
-        <SignaturePage navigation={navigation} />
+      {hasSignature ? (
+        <SignaturePage navigation={navigation} route={route} />
       ) : (
         <WelcomeSignature navigation={navigation} />
       )}

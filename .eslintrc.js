@@ -37,6 +37,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     'react/prefer-stateless-function': 'off',
     'no-console': ['error', { allow: ['tron'] }],
+    'react/prop-types': 'off',
   },
   settings: {
     'import/resolver': {

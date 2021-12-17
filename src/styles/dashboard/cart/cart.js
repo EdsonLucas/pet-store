@@ -262,7 +262,7 @@ export const UpdateButton = styled.TouchableOpacity.attrs({
   align-items: center;
   justify-content: space-between;
 
-  background-color: ${colors.yellow};
+  background-color: ${colors.blue};
   padding: 15px 20px;
   border-radius: ${metrics.baseRadius}px;
 `;

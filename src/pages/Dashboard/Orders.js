@@ -23,30 +23,43 @@ import ToysStoreLogo from '~/assets/images/toys-store-logo.png';
 
 import Spacer from '~/components/Spacer';
 
-function Orders({ navigation }) {
+import StoreProductsList from '~/data/store-products';
+
+function Orders({ navigation, route }) {
+  const { cartProducts, totalPrice } = route.params;
+
+  console.log(cartProducts);
+
   return (
     <Container backgroundColor={colors.gray}>
       <Content showsVerticalScrollIndicator={false}>
         <Title>Histórico</Title>
 
-        <DateContainer>
-          <Text>Sexta, 04 de Julho de 2021</Text>
-        </DateContainer>
+        {/* <DateContainer>
+          <Text>Terça, 30 de Outubro de 2021</Text>
+        </DateContainer> */}
 
-        <HistoryBox onPress={() => navigation.navigate('order-placed')}>
+        <HistoryBox
+          onPress={() =>
+            navigation.navigate('order-placed', { cartProducts, totalPrice })
+          }
+        >
           <HeaderContainer>
             <LogoContainer>
               <Image
-                source={CatFoodLogo}
+                source={StoreProductsList[cartProducts[0].storeId].avatar}
                 resizeMode='cover'
                 style={{
-                  height: 62,
-                  width: 62,
+                  height:
+                    StoreProductsList[cartProducts[0].storeId].heightAvatar,
+                  width: StoreProductsList[cartProducts[0].storeId].widthAvatar,
                 }}
               />
 
               <TextContainer>
-                <Subtitle color={colors.black}>Cat Food</Subtitle>
+                <Subtitle color={colors.black}>
+                  {StoreProductsList[cartProducts[0].storeId].name}
+                </Subtitle>
                 <Subtitle style={{ fontSize: 15 }}>Aberto</Subtitle>
               </TextContainer>
             </LogoContainer>
@@ -58,18 +71,20 @@ function Orders({ navigation }) {
             <OrderStatus>
               <ConfirmIcon />
 
-              <Text marginLeft={10}>Pedido Concluído</Text>
+              <Text marginLeft={10}>Pedido em andamento</Text>
             </OrderStatus>
 
-            <OrderItem>
-              <QuantityItem>
-                <Text style={{ color: colors.black }}>1</Text>
-              </QuantityItem>
+            {cartProducts.map((item) => (
+              <OrderItem key={item.name + Math.random()}>
+                <QuantityItem>
+                  <Text style={{ color: colors.black }}>1</Text>
+                </QuantityItem>
 
-              <Text marginLeft={10} style={{ maxWidth: 280 }}>
-                Ração Golden 3kg para gatos castrados, sabor carne
-              </Text>
-            </OrderItem>
+                <Text marginLeft={10} style={{ maxWidth: 280 }}>
+                  {item.name}
+                </Text>
+              </OrderItem>
+            ))}
           </OrderContainer>
 
           <FooterContainer>
@@ -77,7 +92,7 @@ function Orders({ navigation }) {
           </FooterContainer>
         </HistoryBox>
 
-        <HistoryBox>
+        {/* <HistoryBox>
           <HeaderContainer>
             <LogoContainer>
               <Image
@@ -122,7 +137,7 @@ function Orders({ navigation }) {
           <FooterContainer>
             <Text style={{ color: colors.yellow }}>Detalhes</Text>
           </FooterContainer>
-        </HistoryBox>
+        </HistoryBox> */}
 
         <Spacer />
       </Content>

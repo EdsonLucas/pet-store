@@ -21,61 +21,8 @@ import OutlineButton from '~/components/Button/OutlineButton';
 import GoldenFood from '~/assets/images/golden.png';
 import Spacer from '~/components/Spacer';
 
-const SECTIONS = [
-  {
-    title: 'Rações',
-    products: [
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-    ],
-  },
-];
-
-const SignatureDetails = ({ navigation }) => {
-  const renderContent = (section) => (
-    <>
-      {section.products.map((item) => (
-        <BoxItem
-          key={Math.random()}
-          onPress={() => navigation.navigate('product')}
-        >
-          <BackgroudImage>
-            <Image
-              source={item.image}
-              resizeMode='cover'
-              style={{
-                alignSelf: 'center',
-                width: 60,
-                height: 100,
-              }}
-            />
-          </BackgroudImage>
-
-          <TextContainer>
-            <Subtitle
-              style={{ width: '60%' }}
-              color={colors.black}
-              marginTop={16}
-            >
-              {item.name}
-            </Subtitle>
-
-            <Subtitle color={colors.green} marginTop={25}>
-              {item.price}
-            </Subtitle>
-          </TextContainer>
-        </BoxItem>
-      ))}
-    </>
-  );
+const SignatureDetails = ({ navigation, route }) => {
+  const { cartProducts } = route.params;
 
   return (
     <Container>
@@ -100,23 +47,52 @@ const SignatureDetails = ({ navigation }) => {
           <SelectButton
             title='Endereço'
             onPress={() => {}}
-            rightText='Rua Vicente Santório Fantini, 80'
+            rightText='Rua Treze de Maio, 12 - São Geraldo - Cariacica - ES'
           />
 
           <SelectButton
             title='Forma de Pagamento'
             onPress={() => {}}
-            rightText='•••• 5190'
+            rightText='•••• 7525'
           />
         </Content>
 
-        {SECTIONS.map((item, index) => (
+        {cartProducts.map((item) => (
           <>
             <AccordionTitleContainer key={Math.random()}>
               <AccordionTitle>Seus produtos</AccordionTitle>
             </AccordionTitleContainer>
 
-            {renderContent(item)}
+            <BoxItem
+              key={Math.random()}
+              onPress={() => navigation.navigate('product')}
+            >
+              <BackgroudImage>
+                <Image
+                  source={{ uri: item.image }}
+                  resizeMode='cover'
+                  style={{
+                    alignSelf: 'center',
+                    width: 80,
+                    height: 100,
+                  }}
+                />
+              </BackgroudImage>
+
+              <TextContainer>
+                <Subtitle
+                  style={{ width: '60%' }}
+                  color={colors.black}
+                  marginTop={16}
+                >
+                  {item.name}
+                </Subtitle>
+
+                <Subtitle color={colors.green} marginTop={25}>
+                  {item.price}
+                </Subtitle>
+              </TextContainer>
+            </BoxItem>
           </>
         ))}
 

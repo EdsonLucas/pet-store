@@ -1,4 +1,5 @@
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Content,
   UserContainer,
@@ -14,7 +15,11 @@ import SelectButton from '~/components/Button/SelectButton';
 import OutlineButton from '~/components/Button/OutlineButton';
 import Spacer from '~/components/Spacer';
 
+import useUserStore from '~/store/user.store';
+
 function Profile({ navigation }) {
+  const { fetchLoading, fetchSignatures, fetchProducts } = useUserStore();
+
   return (
     <Container backgroundColor={colors.gray}>
       <Content showsVerticalScrollIndicator={false}>
@@ -77,6 +82,16 @@ function Profile({ navigation }) {
           borderColor={colors.red}
           textColor={colors.red}
           style={{ marginTop: 30 }}
+          onPress={async () => {
+            const jsonValue = JSON.stringify([]);
+            await AsyncStorage.setItem('cartProducts', jsonValue);
+
+            await AsyncStorage.removeItem('isAuthenticated');
+            await AsyncStorage.removeItem('hasSignature');
+            await fetchLoading();
+            await fetchSignatures();
+            await fetchProducts();
+          }}
         >
           Sair do App
         </OutlineButton>

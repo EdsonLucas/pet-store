@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image } from 'react-native';
 import {
   Content,
@@ -22,6 +22,8 @@ import ProductItem from '~/components/ProductItem';
 import Spacer from '~/components/Spacer';
 
 function ForYouStore({ navigation }) {
+  const [filter, setFilter] = useState('dogs');
+
   return (
     <Container backgroundColor={colors.gray}>
       <BackButton onPress={() => navigation.goBack()} />
@@ -32,23 +34,38 @@ function ForYouStore({ navigation }) {
 
       <Content padding={0.1}>
         <FilterItems horizontal showsHorizontalScrollIndicator={false}>
-          <FilterButton color={colors.yellow}>
+          <FilterButton
+            onPress={() => setFilter('dogs')}
+            color={filter === 'dogs' && colors.yellow}
+          >
             <DogIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('cats')}
+            color={filter === 'cats' && colors.yellow}
+          >
             <CatIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('birds')}
+            color={filter === 'birds' && colors.yellow}
+          >
             <BirdIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('hamsters')}
+            color={filter === 'hamsters' && colors.yellow}
+          >
             <HamsterIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('fishs')}
+            color={filter === 'fishs' && colors.yellow}
+          >
             <FishIcon />
           </FilterButton>
 

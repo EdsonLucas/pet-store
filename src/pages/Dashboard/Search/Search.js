@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image } from 'react-native';
 import {
   Content,
@@ -19,6 +19,8 @@ import ClothesImage from '~/assets/images/clothes.png';
 import { colors } from '~/styles/global';
 
 function Search({ navigation }) {
+  const [inputValue, setInputValue] = useState('');
+
   return (
     <Container backgroundColor={colors.gray}>
       <Content showsVerticalScrollIndicator={false}>
@@ -30,7 +32,11 @@ function Search({ navigation }) {
           style={{ backgroundColor: colors.white }}
           placeholder='Produtos, Lojas e etc…'
           returnKeyType='send'
-          onSubmitEditing={() => navigation.navigate('list-search')}
+          value={inputValue}
+          onChangeText={(e) => setInputValue(e)}
+          onSubmitEditing={() =>
+            navigation.navigate('list-search', { search: inputValue })
+          }
         />
 
         <BoxContainer marginTop={40}>

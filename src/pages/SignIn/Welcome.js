@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { colors, metrics } from '~/styles/global';
 
 import {
@@ -15,36 +16,46 @@ import Button from '~/components/Button/Button';
 import OutlineButton from '~/components/Button/OutlineButton';
 import Logo from '~/components/Logo';
 
-const Welcome = ({ navigation }) => (
-  <Container>
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <Content>
-        <SafeAreaView />
-        <StatusBar backgroundColor={colors.yellow} />
+import useUserStore from '~/store/user.store';
 
-        <Logo width={50} height={20} fontSize={20} marginTitleTop={-15} />
+const Welcome = ({ navigation }) => {
+  const { fetchVisitantLoading } = useUserStore();
 
-        <SubtitleText>
-          Compre na Pet Store e gaste o seu tempo com quem sempre está ao seu
-          lado
-        </SubtitleText>
+  const onSubmit = async () => {
+    await fetchVisitantLoading();
+  };
 
-        <ButtonContainer>
-          <Button onPress={() => {}}>Visitante</Button>
+  return (
+    <Container>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Content>
+          <SafeAreaView />
+          <StatusBar backgroundColor={colors.yellow} />
 
-          <OutlineButton
-            onPress={() => navigation.navigate('login')}
-            borderButtonColor={colors.white}
-            textColor={colors.white}
-          >
-            Já sou cliente
-          </OutlineButton>
-        </ButtonContainer>
-      </Content>
-    </ScrollView>
+          <Logo width={50} height={20} fontSize={20} marginTitleTop={-15} />
 
-    <DogImage />
-  </Container>
-);
+          <SubtitleText>
+            Compre na Pet Store e gaste o seu tempo com quem sempre está ao seu
+            lado
+          </SubtitleText>
+
+          <ButtonContainer>
+            <Button onPress={() => onSubmit()}>Visitante</Button>
+
+            <OutlineButton
+              onPress={() => navigation.navigate('login')}
+              borderButtonColor={colors.white}
+              textColor={colors.white}
+            >
+              Já sou cliente
+            </OutlineButton>
+          </ButtonContainer>
+        </Content>
+      </ScrollView>
+
+      <DogImage />
+    </Container>
+  );
+};
 
 export default Welcome;

@@ -20,7 +20,7 @@ export const Content = styled.View`
   align-items: center;
   justify-content: center;
 
-  height: ${metrics.screenHeight / 0.51}px;
+  margin-top: 30%;
 `;
 
 export const ButtonContainer = styled.View`

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Content,
   BoxContainer,
@@ -45,11 +45,34 @@ import Spacer from '~/components/Spacer';
 import Button from '~/components/Button/Button';
 import Modal from '~/components/Modal/Modal';
 import SelectButton from '~/components/Button/SelectButton';
+import Input from '~/components/Input/Input';
+import ModalFull from '~/components/Modal/ModalFull';
 
-function CreateSignature({ navigation }) {
+import PeriodList from '~/data/period';
+
+import useUserStore from '~/store/user.store';
+
+function CreateSignature({ navigation, route }) {
   const [countProduct, setCountProduct] = useState(1);
   const [productModal, setProductModal] = useState(false);
   const [periodModal, setPeriodModal] = useState(false);
+  const [periodity, setPeriodity] = useState('');
+
+  const { fetchSignatures, fetchProducts } = useUserStore();
+
+  const { cartProducts, totalPrice } = route.params;
+
+  const onSubmit = async () => {
+    await AsyncStorage.setItem('hasSignature', 'true');
+    await fetchSignatures();
+
+    navigation.navigate('Assinatura', { cartProducts, totalPrice });
+
+    const jsonValue = JSON.stringify([]);
+    await AsyncStorage.setItem('cartProducts', jsonValue);
+
+    await fetchProducts();
+  };
 
   return (
     <>
@@ -68,9 +91,22 @@ function CreateSignature({ navigation }) {
           <Subtitle marginTop={10} color={colors.grayMedium}>
             Primeiro passo
           </Subtitle>
-          <Text>Selecione o período para o recebimento de seus produtos</Text>
+          <Text marginBottom={10}>
+            Selecione o período para o recebimento de seus produtos e um apelido
+            para sua assinatura, se você quiser
+          </Text>
 
-          <SelectButton title='Selecionar Periodicidade' />
+          <SelectButton
+            onPress={() => setPeriodModal(true)}
+            title='Selecionar Periodicidade'
+            rightText={periodity.length === 0 ? 'Selecionar' : periodity}
+          />
+
+          <Input
+            style={{ marginTop: 20 }}
+            color={colors.white}
+            placeholder='Nome da Assinatura'
+          />
 
           <Subtitle marginTop={25} color={colors.grayMedium}>
             Segundo passo
@@ -87,7 +123,7 @@ function CreateSignature({ navigation }) {
                 <TextContainer>
                   <Text>Entregar em</Text>
                   <Text color={colors.black}>
-                    Rua João das Garças, 120 Campo Grande, Cariacica - ES
+                    Rua Treze de Maio, 12 - São Geraldo, Cariacica - ES
                   </Text>
                 </TextContainer>
               </LeftContainer>
@@ -112,7 +148,7 @@ function CreateSignature({ navigation }) {
               <RightPaymentContainer>
                 <CreditCardIcon style={{ marginTop: 5 }} />
                 <Text marginLeft={5} marginRight={20} color={colors.black}>
-                  •••• 5190
+                  •••• 7525
                 </Text>
 
                 <ArrowRight />
@@ -136,27 +172,21 @@ function CreateSignature({ navigation }) {
             </RowContainer>
 
             <RecipProducts>
-              <RecipProductItem onPress={() => setProductModal(true)}>
-                <ProductLeftContainer>
-                  <QuantityProduct>
-                    <Text color={colors.black}>1</Text>
-                  </QuantityProduct>
-                  <Text>Ração Golden 3kg para gatos, sabor carne</Text>
-                </ProductLeftContainer>
+              {cartProducts.map((item) => (
+                <RecipProductItem
+                  key={item.name + Math.random()}
+                  onPress={() => setProductModal(true)}
+                >
+                  <ProductLeftContainer>
+                    <QuantityProduct>
+                      <Text color={colors.black}>1</Text>
+                    </QuantityProduct>
+                    <Text style={{ maxWidth: '90%' }}>{item.name}</Text>
+                  </ProductLeftContainer>
 
-                <Text color={colors.black}>R$ 49,59</Text>
-              </RecipProductItem>
-
-              <RecipProductItem>
-                <ProductLeftContainer>
-                  <QuantityProduct>
-                    <Text color={colors.black}>1</Text>
-                  </QuantityProduct>
-                  <Text>Ração Golden 3kg para gatos, sabor carne</Text>
-                </ProductLeftContainer>
-
-                <Text color={colors.black}>R$ 49,59</Text>
-              </RecipProductItem>
+                  <Text color={colors.black}>R$ {item.price}</Text>
+                </RecipProductItem>
+              ))}
             </RecipProducts>
           </BoxItem>
 
@@ -169,7 +199,7 @@ function CreateSignature({ navigation }) {
               <ValueItem>
                 <Text>Subtotal</Text>
 
-                <Text>R$115,49</Text>
+                <Text>R$ {totalPrice}</Text>
               </ValueItem>
 
               <ValueItem>
@@ -181,7 +211,7 @@ function CreateSignature({ navigation }) {
               <ValueItem>
                 <Subtitle color={colors.black}>Total</Subtitle>
 
-                <Subtitle color={colors.black}>R$115,49</Subtitle>
+                <Subtitle color={colors.black}>R$ {totalPrice}</Subtitle>
               </ValueItem>
             </ValueContainer>
           </BoxItem>
@@ -191,15 +221,36 @@ function CreateSignature({ navigation }) {
             horas.
           </Text>
 
-          <Button style={{ marginTop: 40 }}>Fechar assinatura</Button>
+          <Button onPress={() => onSubmit()} style={{ marginTop: 40 }}>
+            Fechar assinatura
+          </Button>
 
           <Spacer />
         </BoxContainer>
       </Content>
-      {/*
-      {periodModal && (
 
-      )} */}
+      {periodModal && (
+        <ModalFull
+          isOpen={periodModal}
+          onClosed={() => setPeriodModal(false)}
+          onRequestClose={() => setPeriodModal(false)}
+        >
+          <Title marginBottom={20}>Selecionar Periodicidade</Title>
+
+          {PeriodList.map((item) => (
+            <SelectButton
+              key={Math.random()}
+              title={`${item.period} dias`}
+              onPress={() => {
+                setPeriodity(`A cada ${item.period} dias`);
+                setPeriodModal(false);
+              }}
+            />
+          ))}
+
+          <Spacer />
+        </ModalFull>
+      )}
 
       {productModal && (
         <Modal isOpen={productModal} onClosed={() => setProductModal(false)}>

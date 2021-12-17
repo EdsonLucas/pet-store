@@ -49,7 +49,7 @@ export default function PersonalData({ navigation, nextStep }) {
               returnKeyType='next'
               value={name}
               onChangeText={(text) => {
-                setName(text.trim());
+                setName(text);
               }}
               onSubmitEditing={() => emailRef.current.focus()}
             />

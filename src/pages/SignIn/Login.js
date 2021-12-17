@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { KeyboardAvoidingView, Platform, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { KeyboardAvoidingView, Platform, StatusBar } from 'react-native';
 
 import {
   Container,
@@ -22,14 +23,26 @@ import Button from '~/components/Button/Button';
 import OutlineButton from '~/components/Button/OutlineButton';
 import Logo from '~/components/Logo';
 
+import useUserStore from '~/store/user.store';
+
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassoword] = useState('');
 
   const passwordRef = useRef();
 
+  const { fetchLoading } = useUserStore();
+
+  const onSubmit = async () => {
+    await AsyncStorage.setItem('isAuthenticated', 'true');
+
+    await fetchLoading();
+  };
+
   return (
     <Container>
+      <StatusBar backgroundColor={colors.white} />
+
       <Food source={require('~/assets/images/food.png')} />
       <Header>
         <TitleText>Bem vindo ao</TitleText>
@@ -90,7 +103,7 @@ const Login = ({ navigation }) => {
 
           <LastContainer>
             <ButtonContainer>
-              <Button buttonColor={colors.yellow} onPress={() => {}}>
+              <Button buttonColor={colors.yellow} onPress={() => onSubmit()}>
                 Entrar
               </Button>
             </ButtonContainer>

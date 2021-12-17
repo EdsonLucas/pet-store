@@ -43,7 +43,11 @@ export const FilterButton = styled.TouchableOpacity.attrs({
   border-radius: 10px;
 `;
 
-export const SwipeContainer = styled(Swipeable)``;
+export const SwipeContainer = styled(Swipeable).attrs({
+  useNativeDriver: true,
+})`
+  height: 165px;
+`;
 
 export const BoxItem = styled.View`
   flex-direction: row;

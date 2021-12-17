@@ -9,7 +9,7 @@ export const InputContainer = styled.TextInput`
   width: 100%;
   border-radius: ${metrics.baseRadius}px;
   margin-top: 10px;
-  background-color: ${colors.gray};
+  background-color: ${(props) => props.color || colors.gray};
 
   color: ${colors.grayMedium};
   font-size: 14px;

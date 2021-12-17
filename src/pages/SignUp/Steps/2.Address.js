@@ -91,7 +91,7 @@ export default function Address({ prevStep, nextStep }) {
                 returnKeyType='next'
                 value={neighborhood}
                 onChangeText={(text) => {
-                  setNeighborhood(text.trim());
+                  setNeighborhood(text);
                 }}
                 onSubmitEditing={() => streetRef.current.focus()}
               />

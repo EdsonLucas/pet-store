@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, View } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import Button from '~/components/Button/Button';
 import {
   Content,
@@ -35,17 +35,23 @@ import FunnyGoatLogo from '~/assets/images/funny-goat-logo.png';
 import AnimalShopLogo from '~/assets/images/animal-shop-logo.png';
 import PetsPlayLogo from '~/assets/images/pets-play-logo.png';
 import Heart from '~/assets/icons/heart.svg';
+import HeartFilled from '~/assets/icons/heart-filled.svg';
 import ProductItem from '~/components/ProductItem';
 import Spacer from '~/components/Spacer';
 
+import StoreProductsList from '~/data/store-products';
+
 function Home({ navigation }) {
+  const [store, setStore] = useState(StoreProductsList);
+  const [addFavorite, setAddFavorite] = useState(false);
+
   return (
     <>
       <Container backgroundColor={colors.gray}>
         <Content showsVerticalScrollIndicator={false}>
           <Location onPress={() => navigation.navigate('address-page')}>
             <LocationSubtitle>Localização</LocationSubtitle>
-            <LocationTitle>Campo Grande, Cariacica</LocationTitle>
+            <LocationTitle>São Geraldo, Cariacica</LocationTitle>
           </Location>
 
           <Banner horizontal>
@@ -86,134 +92,109 @@ function Home({ navigation }) {
             </ForYouHeader>
 
             <ForYouContent horizontal showsHorizontalScrollIndicator={false}>
-              <ProductItem
-                onPress={() => navigation.navigate('pre-cart')}
-                widthProduct='330px'
-                image={GoldenFood}
-                title='Ração Golden para Gatos adultos - Sabo…'
-                store='Cat World'
-                distance='5km'
-                priceDelivery='Entrega Grátis'
-                productPrice='R$ 49,59'
-              />
-
-              <ProductItem
-                marginLeft={20}
-                widthProduct='330px'
-                image={GoldenFood}
-                title='Ração Golden para Gatos adultos - Sabo…'
-                store='Cat World'
-                distance='5km'
-                priceDelivery='Entrega Grátis'
-                productPrice='R$ 49,59'
-              />
-
-              <ProductItem
-                marginLeft={20}
-                widthProduct='330px'
-                image={GoldenFood}
-                title='Ração Golden para Gatos adultos - Sabo…'
-                store='Cat World'
-                distance='5km'
-                priceDelivery='Entrega Grátis'
-                productPrice='R$ 49,59'
-              />
+              {store.map((storeItem) => (
+                <>
+                  {storeItem.products.map((productsItem) => (
+                    <>
+                      {productsItem.productList.map((item) => (
+                        <ProductItem
+                          key={Math.random()}
+                          onPress={() =>
+                            navigation.navigate('cart-visible-pages', {
+                              screen: 'product',
+                              params: { product: item },
+                            })
+                          }
+                          marginLeft={15}
+                          widthProduct='330px'
+                          image={{ uri: item.image }}
+                          title={item.name}
+                          store={StoreProductsList[item.storeId].name}
+                          distance={StoreProductsList[item.storeId].distance}
+                          priceDelivery='Entrega Grátis'
+                          productPrice={`R$ ${item.price}`}
+                        />
+                      ))}
+                    </>
+                  ))}
+                </>
+              ))}
 
               <Spacer width={60} />
             </ForYouContent>
           </ForYouContainer>
 
-          <FavoritesContainer>
-            <TitleCards
-              marginLeft={metrics.basePadding}
-              marginTop={25}
-              marginBottom={15}
-            >
-              Seus Favoritos
-            </TitleCards>
+          {addFavorite && (
+            <FavoritesContainer>
+              <TitleCards
+                marginLeft={metrics.basePadding}
+                marginTop={25}
+                marginBottom={15}
+              >
+                Seus Favoritos
+              </TitleCards>
 
-            <Favorites horizontal showsHorizontalScrollIndicator={false}>
-              <Image
-                source={CatFoodLogo}
-                resizeMode='cover'
-                style={{
-                  height: 70,
-                  width: 70,
-                  alignSelf: 'center',
-                  marginHorizontal: 10,
-                }}
-              />
-              <Image
-                source={ToysStoreLogo}
-                resizeMode='cover'
-                style={{
-                  height: 65,
-                  width: 80,
-                  alignSelf: 'center',
-                  marginHorizontal: 10,
-                }}
-              />
-              <Image
-                source={FunnyGoatLogo}
-                resizeMode='cover'
-                style={{
-                  height: 68,
-                  width: 90,
-                  alignSelf: 'center',
-                  marginHorizontal: 10,
-                }}
-              />
-            </Favorites>
-          </FavoritesContainer>
+              <Favorites horizontal showsHorizontalScrollIndicator={false}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('cart-visible-pages', {
+                      screen: 'page-store',
+                      params: { item: store[1] },
+                    })
+                  }
+                >
+                  <Image
+                    source={FunnyGoatLogo}
+                    resizeMode='cover'
+                    style={{
+                      height: 68,
+                      width: 90,
+                      alignSelf: 'center',
+                      marginHorizontal: 10,
+                    }}
+                  />
+                </TouchableOpacity>
+              </Favorites>
+            </FavoritesContainer>
+          )}
 
           <StoreContainer>
             <TitleCards marginBottom={5}>Pet Shops</TitleCards>
 
-            <StoreItem onPress={() => navigation.navigate('page-store')}>
-              <StoreImageContainer>
-                <Image
-                  source={AnimalShopLogo}
-                  resizeMode='cover'
-                  style={{
-                    height: 65,
-                    width: 68,
-                  }}
-                />
+            {store.map((item) => (
+              <StoreItem
+                key={item.id}
+                onPress={() =>
+                  navigation.navigate('cart-visible-pages', {
+                    screen: 'page-store',
+                    params: { item },
+                  })
+                }
+              >
+                <StoreImageContainer>
+                  <Image
+                    source={item.avatar}
+                    resizeMode='cover'
+                    style={{
+                      height: item.heightAvatar,
+                      width: item.widthAvatar,
+                    }}
+                  />
 
-                <TextContainer>
-                  <StoreTitle>Animal Shop</StoreTitle>
-                  <StoreDescription>Produtos variados • 5km</StoreDescription>
-                  <StoreShipping>Entrega Grátis</StoreShipping>
-                </TextContainer>
-              </StoreImageContainer>
+                  <TextContainer>
+                    <StoreTitle>{item.name}</StoreTitle>
+                    <StoreDescription>
+                      {item.category} • {item.distance}
+                    </StoreDescription>
+                    <StoreShipping>{item.deliveryPrice}</StoreShipping>
+                  </TextContainer>
+                </StoreImageContainer>
 
-              <AddFavorite>
-                <Heart />
-              </AddFavorite>
-            </StoreItem>
-
-            <StoreItem>
-              <StoreImageContainer>
-                <Image
-                  source={PetsPlayLogo}
-                  resizeMode='cover'
-                  style={{
-                    height: 55,
-                    width: 68,
-                  }}
-                />
-
-                <TextContainer>
-                  <StoreTitle>Pets Play</StoreTitle>
-                  <StoreDescription>Brinquedos • 7km</StoreDescription>
-                  <StoreShipping>Entrega Grátis</StoreShipping>
-                </TextContainer>
-              </StoreImageContainer>
-
-              <AddFavorite>
-                <Heart />
-              </AddFavorite>
-            </StoreItem>
+                <AddFavorite onPress={() => setAddFavorite(!addFavorite)}>
+                  {item.id === 1 && addFavorite ? <HeartFilled /> : <Heart />}
+                </AddFavorite>
+              </StoreItem>
+            ))}
           </StoreContainer>
         </Content>
       </Container>

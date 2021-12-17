@@ -47,14 +47,14 @@ const ProductItem = (props) => {
           {title}
         </Subtitle>
 
-        <RowTextContainer>
+        <TextContainer width={90} marginLeft={0.1}>
           <Text>
             {store} • {distance}
           </Text>
           <Text color={colors.green}>{priceDelivery}</Text>
-        </RowTextContainer>
+        </TextContainer>
 
-        <Subtitle alignSelf='flex-end' color={colors.black} marginTop={25}>
+        <Subtitle alignSelf='flex-end' color={colors.black} marginTop={5}>
           {productPrice}
         </Subtitle>
       </TextContainer>

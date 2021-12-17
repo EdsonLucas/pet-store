@@ -4,10 +4,18 @@ import { colors } from '~/styles/global';
 import { Subtitle } from '~/styles/global/general';
 
 const Box = (props) => {
-  const { image, title, colorTitle, marginTitleTop, boxShadow } = props;
+  const { image, title, colorTitle, marginTitleTop, boxShadow, borderColor } =
+    props;
 
   return (
-    <BoxContainer boxShadow={boxShadow && true} {...props}>
+    <BoxContainer
+      boxShadow={boxShadow && true}
+      borderColor={borderColor}
+      style={{
+        elevation: boxShadow ? 0.1 : 0,
+      }}
+      {...props}
+    >
       {image}
 
       <Subtitle

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Content,
   DateContainer,
@@ -25,34 +26,56 @@ import ToysStoreLogo from '~/assets/images/toys-store-logo.png';
 import Spacer from '~/components/Spacer';
 import OutlineButton from '~/components/Button/OutlineButton';
 
-function SignaturePage({ navigation }) {
+import useUserStore from '~/store/user.store';
+
+function SignaturePage({ navigation, route }) {
+  const { fetchProducts } = useUserStore();
+
+  const { cartProducts, totalPrice } = route.params;
+
+  useEffect(async () => {
+    await AsyncStorage.removeItem('cartProducts');
+    await fetchProducts();
+  }, []);
+
   return (
     <Container backgroundColor={colors.gray}>
       <Content showsVerticalScrollIndicator={false}>
         <Title marginBottom={20}>Assinatura</Title>
 
-        <HistoryBox onPress={() => navigation.navigate('signature-details')}>
+        <HistoryBox
+          onPress={() =>
+            navigation.navigate('signature-details', {
+              cartProducts,
+              totalPrice,
+            })
+          }
+        >
           <HeaderContainer>
             <TextContainer marginLeft={5}>
               <Subtitle color={colors.black}>Minha assinatura</Subtitle>
               <Subtitle style={{ fontSize: 15 }}>
-                Próxima entrega para o dia 25
+                Próxima entrega para o dia 02
               </Subtitle>
             </TextContainer>
 
             <ArrowRight />
           </HeaderContainer>
 
-          <OrderContainer>
-            <OrderItem>
-              <QuantityItem>
-                <Text style={{ color: colors.black }}>1</Text>
-              </QuantityItem>
+          <View style={{ marginBottom: 20 }} />
 
-              <Text marginLeft={10} style={{ maxWidth: 280 }}>
-                Ração Golden 3kg para gatos castrados, sabor carne
-              </Text>
-            </OrderItem>
+          <OrderContainer>
+            {cartProducts.map((item) => (
+              <OrderItem key={item.name + Math.random()}>
+                <QuantityItem>
+                  <Text style={{ color: colors.black }}>1</Text>
+                </QuantityItem>
+
+                <Text marginLeft={10} style={{ maxWidth: 280 }}>
+                  {item.name}
+                </Text>
+              </OrderItem>
+            ))}
           </OrderContainer>
 
           <FooterContainer>
@@ -66,7 +89,11 @@ function SignaturePage({ navigation }) {
       <ButtonContainer>
         <OutlineButton
           style={{ marginBottom: 10 }}
-          onPress={() => navigation.navigate('store-signature')}
+          onPress={() =>
+            navigation.navigate('cart-visible-pages', {
+              screen: 'store-signature',
+            })
+          }
         >
           Criar nova assinatura
         </OutlineButton>

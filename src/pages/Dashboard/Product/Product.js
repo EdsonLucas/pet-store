@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'react-native';
 import {
   Content,
@@ -27,7 +28,40 @@ import BackButton from '~/components/Button/BackButton';
 import Spacer from '~/components/Spacer';
 import Button from '~/components/Button/Button';
 
-function Product({ navigation }) {
+import StoreProductsList from '~/data/store-products';
+
+function Product({ navigation, route }) {
+  const { product } = route.params;
+
+  const [store, setStore] = useState(StoreProductsList[product.storeId]);
+
+  const navigateCart = () => {
+    navigation.navigate('pre-cart');
+  };
+
+  const sendToCart = async (product) => {
+    const previousItems = await AsyncStorage.getItem('cartProducts');
+    const previousParsedItem = JSON.parse(previousItems);
+
+    const array = [];
+
+    if (previousItems !== null) {
+      previousParsedItem.push(product);
+
+      const jsonValue = JSON.stringify(previousParsedItem);
+      await AsyncStorage.setItem('cartProducts', jsonValue);
+
+      navigateCart();
+    } else {
+      array.push(product);
+
+      const jsonValue = JSON.stringify(array);
+      await AsyncStorage.setItem('cartProducts', jsonValue);
+
+      navigateCart();
+    }
+  };
+
   return (
     <>
       <Container />
@@ -42,27 +76,27 @@ function Product({ navigation }) {
         <HeaderProduct>
           <BackgroudImage>
             <Image
-              source={GoldenFood}
+              source={{ uri: product.image }}
               resizeMode='cover'
               style={{
                 alignSelf: 'center',
-                width: 90,
-                height: 160,
+                width: 200,
+                height: 200,
               }}
             />
           </BackgroudImage>
 
           <TextContainer>
             <Subtitle textAlign='center' color={colors.black} marginTop={16}>
-              Ração Golden para Gatos adultos - Sabor Carne
+              {product.name}
             </Subtitle>
 
             <Title marginTop={25} marginBottom={20}>
-              R$ 49,59
+              R$ {product.price}
             </Title>
           </TextContainer>
 
-          <Button onPress={() => navigation.navigate('pre-cart')}>
+          <Button onPress={() => sendToCart(product)}>
             Adicionar ao carinho
           </Button>
         </HeaderProduct>
@@ -71,18 +105,20 @@ function Product({ navigation }) {
           <StoreItem onPress={() => navigation.navigate('page-store')}>
             <StoreImageContainer>
               <Image
-                source={AnimalShopLogo}
+                source={store.avatar}
                 resizeMode='cover'
                 style={{
-                  height: 65,
-                  width: 68,
+                  height: store.heightAvatar,
+                  width: store.widthAvatar,
                 }}
               />
 
               <TextContainer alignItems='flex-start'>
-                <StoreTitle>Animal Shop</StoreTitle>
-                <StoreDescription>Produtos variados • 5km</StoreDescription>
-                <StoreShipping>Entrega Grátis</StoreShipping>
+                <StoreTitle>{store.name}</StoreTitle>
+                <StoreDescription>
+                  {store.category} • {store.distance}
+                </StoreDescription>
+                <StoreShipping>{store.deliveryPrice}</StoreShipping>
               </TextContainer>
             </StoreImageContainer>
           </StoreItem>
@@ -92,16 +128,7 @@ function Product({ navigation }) {
               Descrição
             </Subtitle>
 
-            <Text> - Indicada para cães adultos;</Text>
-            <Text> - Específica para pets de raças pequenas;</Text>
-            <Text> - Contém nutrientes, vitaminas e minerais;</Text>
-            <Text>
-              - Fibras naturais proporciona fácil digestão e fezes firmes;
-            </Text>
-            <Text> - Enriquecida com ômega 6, proteínas e aminoácidos,</Text>
-            <Text>
-              - Disponível em embalagens de 1 kg, 3 kg, 10,1 kg, 15 kg e 20 kg.
-            </Text>
+            <Text>{product.description}</Text>
           </BoxItem>
 
           <BoxItem paddingHorizontal={0.1}>
@@ -113,38 +140,38 @@ function Product({ navigation }) {
               <Text marginLeft={23}>Linha</Text>
 
               <Text marginRight={23} color={colors.grayRegular}>
-                Premium
+                {product.especificacao.linha}
               </Text>
             </DescriptionContainer>
 
             <DescriptionContainer>
-              <Text marginLeft={23}>Linha</Text>
+              <Text marginLeft={23}>Porte do animal</Text>
 
               <Text marginRight={23} color={colors.grayRegular}>
-                Premium
+                {product.especificacao.porte_raca}
               </Text>
             </DescriptionContainer>
 
             <DescriptionContainer>
-              <Text marginLeft={23}>Linha</Text>
+              <Text marginLeft={23}>Peso de produto</Text>
 
               <Text marginRight={23} color={colors.grayRegular}>
-                Premium
+                {product.especificacao.peso}
               </Text>
             </DescriptionContainer>
 
             <DescriptionContainer>
-              <Text marginLeft={23}>Linha</Text>
+              <Text marginLeft={23}>Recomendo para idade</Text>
 
               <Text marginRight={23} color={colors.grayRegular}>
-                Premium
+                {product.especificacao.idade}
               </Text>
             </DescriptionContainer>
           </BoxItem>
         </Content>
 
         <ButtonContainer>
-          <Button onPress={() => navigation.navigate('pre-cart')}>
+          <Button onPress={() => sendToCart(product)}>
             Adicionar ao carinho
           </Button>
         </ButtonContainer>

@@ -16,41 +16,10 @@ import {
 } from '~/styles/dashboard/product/pagestore';
 import { Container, Title, Subtitle, Text } from '~/styles/global/general';
 
-import AnimalShopLogo from '~/assets/images/animal-shop-logo.png';
-import GoldenFood from '~/assets/images/golden.png';
-
 import BackButton from '~/components/Button/BackButton';
 import { colors, metrics } from '~/styles/global';
 
-const SECTIONS = [
-  {
-    title: 'Promoções',
-    products: [
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-    ],
-  },
-  {
-    title: 'Rações',
-    products: [
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-      {
-        image: GoldenFood,
-        name: 'Ração Golden para Gatos adultos - Sabor Carne',
-        price: 'R$ 49,59',
-      },
-    ],
-  },
-];
-
-const PageStore = ({ navigation }) => {
+const PageStore = ({ navigation, route }) => {
   // const [activeSections, setActiveSections] = useState([]);
 
   // const renderHeader = (section) => (
@@ -59,20 +28,22 @@ const PageStore = ({ navigation }) => {
   //   </AccordionTitleContainer>
   // );
 
+  const { item } = route.params;
+
   const renderContent = (section) => (
     <>
-      {section.products.map((item) => (
+      {section.map((product) => (
         <BoxItem
           key={Math.random()}
-          onPress={() => navigation.navigate('product')}
+          onPress={() => navigation.navigate('product', { product })}
         >
           <BackgroudImage>
             <Image
-              source={item.image}
+              source={{ uri: product.image }}
               resizeMode='cover'
               style={{
                 alignSelf: 'center',
-                width: 60,
+                width: 80,
                 height: 100,
               }}
             />
@@ -80,11 +51,11 @@ const PageStore = ({ navigation }) => {
 
           <TextContainer>
             <Subtitle color={colors.black} marginTop={16}>
-              {item.name}
+              {product.name}
             </Subtitle>
 
             <Subtitle color={colors.green} marginTop={25}>
-              {item.price}
+              R$ {product.price}
             </Subtitle>
           </TextContainer>
         </BoxItem>
@@ -111,22 +82,24 @@ const PageStore = ({ navigation }) => {
 
           <StoreContainer>
             <TextStoreContainer>
-              <Title>Animal Shop</Title>
-              <Text>Produtos variados • 5 km</Text>
+              <Title>{item.name}</Title>
+              <Text>
+                {item.category} • {item.distance}
+              </Text>
             </TextStoreContainer>
 
             <Image
-              source={AnimalShopLogo}
+              source={item.avatar}
               resizeMode='cover'
               style={{
-                height: 65,
-                width: 68,
+                height: item.heightAvatar,
+                width: item.widthAvatar,
               }}
             />
           </StoreContainer>
 
           <Text marginLeft={metrics.basePadding}>
-            Hoje, 40 - 50 min • Entrega Grátis
+            Hoje, 40 - 50 min • {item.deliveryPrice}
           </Text>
         </Header>
 
@@ -141,13 +114,13 @@ const PageStore = ({ navigation }) => {
           keyExtractor={(item, indice) => console.log(indice)}
         /> */}
 
-        {SECTIONS.map((item, index) => (
+        {item.products.map((list, index) => (
           <>
             <AccordionTitleContainer key={Math.random()}>
-              <AccordionTitle>{item.title}</AccordionTitle>
+              <AccordionTitle>{list.productListTitle}</AccordionTitle>
             </AccordionTitleContainer>
 
-            {renderContent(item)}
+            {renderContent(list.productList)}
           </>
         ))}
       </BoxContainer>

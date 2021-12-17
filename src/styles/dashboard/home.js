@@ -108,6 +108,7 @@ export const TextContainer = styled.View`
 
 export const StoreTitle = styled(Title)`
   font-size: 18px;
+  text-transform: capitalize;
 `;
 
 export const StoreDescription = styled(Text)`

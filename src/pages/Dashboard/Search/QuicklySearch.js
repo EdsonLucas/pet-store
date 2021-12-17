@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image } from 'react-native';
 import {
   Content,
@@ -22,7 +22,12 @@ import BackButton from '~/components/Button/BackButton';
 import ProductItem from '~/components/ProductItem';
 import Spacer from '~/components/Spacer';
 
+import StoreProductsList from '~/data/store-products';
+
 function QuicklySearch({ navigation }) {
+  const [filter, setFilter] = useState('dogs');
+  const [store, setStore] = useState(StoreProductsList);
+
   return (
     <Container backgroundColor={colors.gray}>
       <BackButton onPress={() => navigation.goBack()} />
@@ -39,23 +44,38 @@ function QuicklySearch({ navigation }) {
 
       <Content padding={0.1}>
         <FilterItems horizontal showsHorizontalScrollIndicator={false}>
-          <FilterButton color={colors.yellow}>
+          <FilterButton
+            onPress={() => setFilter('dogs')}
+            color={filter === 'dogs' && colors.yellow}
+          >
             <DogIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('cats')}
+            color={filter === 'cats' && colors.yellow}
+          >
             <CatIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('birds')}
+            color={filter === 'birds' && colors.yellow}
+          >
             <BirdIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('hamsters')}
+            color={filter === 'hamsters' && colors.yellow}
+          >
             <HamsterIcon />
           </FilterButton>
 
-          <FilterButton>
+          <FilterButton
+            onPress={() => setFilter('fishs')}
+            color={filter === 'fishs' && colors.yellow}
+          >
             <FishIcon />
           </FilterButton>
 
@@ -64,14 +84,65 @@ function QuicklySearch({ navigation }) {
       </Content>
 
       <BoxContainer showsVerticalScrollIndicator={false}>
-        <ProductItem
-          image={GoldenFood}
-          title='Ração Golden para Gatos adultos - Sabo…'
-          store='Cat World'
-          distance='5km'
-          priceDelivery='Entrega Grátis'
-          productPrice='R$ 49,59'
-        />
+        {filter === 'dogs' && (
+          <>
+            {store.map((storeItem) => (
+              <>
+                {storeItem.products.map((productsItem) => (
+                  <>
+                    {productsItem.productList.map((item) => (
+                      <>
+                        {item.tipo === 'Ração' && item.category === 'Cachorro' && (
+                          <ProductItem
+                            onPress={() =>
+                              navigation.navigate('cart-visible-pages', {
+                                screen: 'product',
+                                params: { product: item },
+                              })
+                            }
+                            image={{ uri: item.image }}
+                            title={item.name}
+                            store={StoreProductsList[item.storeId].name}
+                            distance={StoreProductsList[item.storeId].distance}
+                            priceDelivery='Entrega Grátis'
+                            productPrice={`R$ ${item.price}`}
+                          />
+                        )}
+                      </>
+                    ))}
+                  </>
+                ))}
+              </>
+            ))}
+          </>
+        )}
+
+        {filter === 'cats' && (
+          <>
+            {store.map((storeItem) => (
+              <>
+                {storeItem.products.map((productsItem) => (
+                  <>
+                    {productsItem.productList.map((item) => (
+                      <>
+                        {item.tipo === 'Ração' && item.category === 'Gato' && (
+                          <ProductItem
+                            image={{ uri: item.image }}
+                            title={item.name}
+                            store={StoreProductsList[item.storeId].name}
+                            distance={StoreProductsList[item.storeId].distance}
+                            priceDelivery='Entrega Grátis'
+                            productPrice={`R$ ${item.price}`}
+                          />
+                        )}
+                      </>
+                    ))}
+                  </>
+                ))}
+              </>
+            ))}
+          </>
+        )}
 
         <Spacer height={20} />
       </BoxContainer>

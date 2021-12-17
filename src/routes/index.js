@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
-// import { useUserStore } from '~/store';
-
-import { Container } from '~/styles/global/general';
+import React, { useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import useUserStore from '~/store/user.store';
 
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
 
 export default function Routes() {
-  // const { authenticated, fetchIsAuthenticated } = useUserStore();
+  const { isAuthenticated, fetchLoading, isVisitant } = useUserStore();
+  const [openModalCart, setOpenModalCart] = useState(true);
 
-  // useEffect(() => {
-  //   fetchIsAuthenticated();
-  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      await fetchLoading();
+    }
 
-  const [authenticated, setAuthenticated] = useState(false);
+    fetchData();
+  }, [isAuthenticated]);
 
-  return <>{!authenticated ? <AppRoutes /> : <AuthRoutes />}</>;
+  return (
+    <NavigationContainer>
+      {isAuthenticated || isVisitant ? (
+        <>
+          <AppRoutes />
+        </>
+      ) : (
+        <AuthRoutes />
+      )}
+    </NavigationContainer>
+  );
 }

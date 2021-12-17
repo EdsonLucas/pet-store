@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Content,
   BoxContainer,
@@ -46,10 +46,15 @@ import Button from '~/components/Button/Button';
 import Modal from '~/components/Modal/Modal';
 import SelectButton from '~/components/Button/SelectButton';
 
-function Cart({ navigation }) {
+import useUserStore from '~/store/user.store';
+
+function Cart({ navigation, route }) {
+  const { fetchProducts } = useUserStore();
   const [countProduct, setCountProduct] = useState(1);
   const [productModal, setProductModal] = useState(false);
   const [paymentModal, setPaymentModal] = useState(false);
+
+  const { cartProducts, totalPrice } = route.params;
 
   return (
     <>
@@ -75,7 +80,7 @@ function Cart({ navigation }) {
                 <TextContainer>
                   <Text>Entregar em</Text>
                   <Text color={colors.black}>
-                    Rua João das Garças, 120 Campo Grande, Cariacica - ES
+                    Rua Treze de Maio, 12 - São Geraldo, Cariacica - ES
                   </Text>
                 </TextContainer>
               </LeftContainer>
@@ -93,27 +98,21 @@ function Cart({ navigation }) {
             </RowContainer>
 
             <RecipProducts>
-              <RecipProductItem onPress={() => setProductModal(true)}>
-                <ProductLeftContainer>
-                  <QuantityProduct>
-                    <Text color={colors.black}>1</Text>
-                  </QuantityProduct>
-                  <Text>Ração Golden 3kg para gatos, sabor carne</Text>
-                </ProductLeftContainer>
+              {cartProducts.map((item) => (
+                <RecipProductItem
+                  key={item.name + Math.random()}
+                  onPress={() => setProductModal(true)}
+                >
+                  <ProductLeftContainer>
+                    <QuantityProduct>
+                      <Text color={colors.black}>1</Text>
+                    </QuantityProduct>
+                    <Text style={{ maxWidth: '90%' }}>{item.name}</Text>
+                  </ProductLeftContainer>
 
-                <Text color={colors.black}>R$ 49,59</Text>
-              </RecipProductItem>
-
-              <RecipProductItem>
-                <ProductLeftContainer>
-                  <QuantityProduct>
-                    <Text color={colors.black}>1</Text>
-                  </QuantityProduct>
-                  <Text>Ração Golden 3kg para gatos, sabor carne</Text>
-                </ProductLeftContainer>
-
-                <Text color={colors.black}>R$ 49,59</Text>
-              </RecipProductItem>
+                  <Text color={colors.black}>R$ {item.price.toFixed(2)}</Text>
+                </RecipProductItem>
+              ))}
             </RecipProducts>
           </BoxItem>
 
@@ -131,7 +130,7 @@ function Cart({ navigation }) {
               <RightPaymentContainer>
                 <CreditCardIcon style={{ marginTop: 5 }} />
                 <Text marginLeft={5} marginRight={20} color={colors.black}>
-                  •••• 5190
+                  •••• 7525
                 </Text>
 
                 <ArrowRight />
@@ -147,7 +146,7 @@ function Cart({ navigation }) {
             <ValueItem>
               <Text>Subtotal</Text>
 
-              <Text>R$115,49</Text>
+              <Text>R$ {totalPrice}</Text>
             </ValueItem>
 
             <ValueItem>
@@ -159,11 +158,26 @@ function Cart({ navigation }) {
             <ValueItem>
               <Subtitle color={colors.black}>Total</Subtitle>
 
-              <Subtitle color={colors.black}>R$115,49</Subtitle>
+              <Subtitle color={colors.black}>R$ {totalPrice}</Subtitle>
             </ValueItem>
           </ValueContainer>
 
-          <Button style={{ marginBottom: 10 }}>Fechar pedido</Button>
+          <Button
+            style={{ marginBottom: 10 }}
+            onPress={async () => {
+              navigation.navigate('dashboard', {
+                screen: 'Pedidos',
+                params: { cartProducts, totalPrice },
+              });
+
+              const jsonValue = JSON.stringify([]);
+              await AsyncStorage.setItem('cartProducts', jsonValue);
+
+              await fetchProducts();
+            }}
+          >
+            Fechar pedido
+          </Button>
         </BottomContainer>
       </Content>
 
